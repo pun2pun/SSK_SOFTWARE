@@ -1,0 +1,193 @@
+<html>
+
+<head>
+    <title>Admin : Management </title>
+    <!-- load bootstrap css -->
+    <link rel="stylesheet" href="./bootstrap-4.4.1-dist/css/bootstrap.css">
+    <!-- load fontawesome -->
+    <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
+</head>
+
+<body style="font-family:  'Kanit', sans-serif;">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-pink">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            MENU
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/admin_home">หน้าแรก</a>
+            <a class="dropdown-item" href="/manage">จัดการข้อมูล</a>
+            <div class="dropdown-divider"></div>
+           
+          </div>
+        </li>
+      
+      </ul>
+ 
+    </div>
+  </nav>
+
+<!--------------------------------------------------------------- Main choice  ---------------->
+
+  <div class="container" style="width: 1000px;margin-top: 50px; border: 1px solid #a8a6a6;">
+
+    <div class="container" style="margin-top: 30px;">
+     
+        <div class="row">
+            <div class="col-8">
+
+
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">เพิ่ม</button>
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">เพิ่มงบประมาณ</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="/abg23" method="POST">
+                        <div class="form-group">
+                          <label for="recipient-name" class="col-form-label">ประเภท:</label>
+                          <select class="custom-select" id="type_budget" name="type_budget" style="margin-bottom: 20px;">            
+                              <option value="ตามกลยุทธ์">1 : ตามกลยุทธ์ </option>
+                              <option value="งานประจำ">2 : งานประจำ </option>
+                              <option value="งบกลาง">3 : งบกลาง </option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="message-text" class="col-form-label">จำนวน:</label>
+                          <input type="text" class="form-control" name="value_budget" ></input>
+                        </div>
+                      
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                      <button type="submit" value="change_budget_submited" class="btn btn-primary"  >ตกลง</button>
+                    </div>
+                  </form>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#decress_budget_Modal">ลด</button>
+              <div class="modal fade" id="decress_budget_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">ลดงบประมาณ</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                   <form action="/dbg23" method="POST">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">ชื่อ</label>
+                      </div>
+                      <select class="custom-select" id="inputGroupSelect01" name= 'choice_delete'>
+                        <option selected>Choose...</option>
+                      
+                        <% for (var i = 0;i< budget_info.length;i++) { %>
+                          
+                          <option value="<%= budget_info[i].data.type_budget + ","+ budget_info[i].data.value_budget %> "><%= String(i+1)+" : "+ budget_info[i].data.type_budget + "( "+ budget_info[i].data.value_budget +")"%> </option>
+                        <% } %> 
+                      </select>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                      <button type="submit" value="change_budget_submited" class="btn btn-primary"  >ลบ</button>
+                    </div>
+                  </form>
+                  </div>
+                </div>
+              </div>
+
+                <table class="table" style="margin-top: 30px;">
+                    <thead>
+                      <tr>
+                        <th scope="col">ลำดับ</th>
+                        <th scope="col">ประเภท</th>
+                        <th scope="col">จำนวน(บาท)</th>
+                        
+                      </tr>
+                    </thead>
+
+                    <% var total_budget = 0 %> 
+                    
+                    <% for (var i = 0;i< budget_info.length;i++) { %>
+                      <% total_budget = total_budget + parseInt(budget_info[i].data.value_budget)  %> 
+                      <tbody>
+                        <tr>
+                          <th scope="row"><%= i+1  %> </th>
+                          <td><%= budget_info[i].data.type_budget %> </td>
+                          <td><%= parseInt(budget_info[i].data.value_budget).toLocaleString() %> </td>
+                         
+                        </tr>
+                      </tbody>
+                
+                      <% } %>
+
+                    
+                </table>
+
+            </div>
+
+
+            <div class="col-4">
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">งบประมาณทั้งหมด</div>
+                    <div class="card-body">
+
+                                         
+                      <h5 class="card-title" style=" font-size: 30px; margin : 0 auto;width:85%; clear:both;  "><%= total_budget.toLocaleString() %> </h5>
+    
+                    </div>
+                  </div>
+                  <div class="card border-danger mb-3" style="max-width: 18rem;">
+                    <div class="card-header">งบประมาณที่ใช้<div>(จากการเสนอโครงการ)</div></div>
+                    <div class="card-body text-danger">                                             
+                          <h5 class="card-title" style=" font-size: 25px; margin : 0 auto;width:75%; clear:both;  "><%= used_budget.toLocaleString() %> </h5>   
+                   </div>
+                   </div>
+
+                   <div class="card border-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">งบประมาณที่เหลือ</div>
+                    <div class="card-body text-primary">                                             
+                          <h5 class="card-title" style=" font-size: 25px; margin : 0 auto;width:75%; clear:both;  "><%= (total_budget-used_budget).toLocaleString() %> </h5>   
+                   </div>
+                   </div>
+            </div>
+
+
+            
+
+          
+
+          </div>   
+      
+    </div>
+</div>
+
+
+<!--------------------------------------------------------------- footer ---------------->
+   
+
+     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+</body>
+
+</html>

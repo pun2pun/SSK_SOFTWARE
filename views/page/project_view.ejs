@@ -1,0 +1,131 @@
+<html>
+
+<head>
+    <title>หน้าแรก</title>
+    <!-- load bootstrap css -->
+    <link rel="stylesheet" href="./bootstrap-4.4.1-dist/css/bootstrap.css">
+    <!-- load fontawesome -->
+    <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+
+<body style="font-family:  'Kanit', sans-serif;">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-pink">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            MENU
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <span class="navbar-text" style="margin-right: 10px;">
+            <strong>ชื่อ</strong> : <%= user.local.name %>
+          </span>
+        <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='/login'" type="button">Logout</button>
+      </form>
+    </div>
+  </nav>
+
+<!--------------------------------------------------------------- Main choice  ---------------->
+
+<%var statigy_list = ["ยุทธศาสตร์ที่ 1 : การเพิ่มขีดความสามารถในการแข่งขันของประเทศปานกลาง (Growth & Competitiveness)","ยุทธศาสตร์ที่ 2 : การลดความเหลื่อมล้ำ (Inclusive Growth)","ยุทธศาสตร์ที่ 3 : การเติบโตที่เป็นมิตรต่อสิ่งแวดล้อม (Green Growth)","ยุทธศาสตร์ที่ 4 : การสร้างความสมดุลและปรับระบบบริหารจัดการภาครัฐ (Internal Process)"] %>
+<% var st2_list = ["ยุทธศาสตร์ที่ 1 : การพัฒนาคุณภาพผู้เรียนในระดับการศึกษาขั้นพื้นฐาน","ยุทธศาสตร์ที่ 2 : การเพิ่มโอกาสให้ผู้เรียนเข้าถึงบริการการศึกษาขั้นพื้นฐาน","ยุทธศาสตร์ที่ 3 : การพัฒนาคุณภาพครูและบุคลากรทางการศึกษา","ยุทธศาสตร์ที่ 4 : การพัฒนาระบบการบริหารจัดการ"] %>
+<% var st3_list = ["มาตรฐานที่ 1 : คุณภาพของผู้เรียน","มาตรฐานที่ 2 : กระบวนการบริหารและการจัดการ","มาตรฐานที่ 3 : กระบวนการจัดการเรียนการสอนที่เน้นผู้เรียนเป็นสำคัญ"] %>
+<% var st4_list = ["กลยุทธ์ที่ 1 : พัฒนาผู้เรียนให้เป็นพลโลกแห่งศตวรรษที่ 21","กลยุทธ์ที่ 2 : พัฒนาศักยภาพและจรรยาบรรณวิชาชีพคร","กลยุทธ์ที่ 3 : ส่งเสริมและพัฒนาหลักสูตรสถานศึกษาตามกลุ่มศักยภาพผู้เรียน","กลยุทธ์ที่ 4 : พัฒนาศักยภาพระบบการกำกับและสะท้อนผลมาตรฐานคุณภาพการบริหารจัดการ","กลยุทธ์ที่ 5 : ส่งเสริมพัฒนาภาคีเครือข่ายความร่วมมือการพัฒนากิจกรรมการเรียนรู้ตามศาสตร์พระราชา"] %>
+
+<center><img src="image/title-01.jpg" width="1000" height="150"></center>
+  <div class="container" style="width: 1000px;margin-top: 50px; margin-bottom: 50px; border: 1px solid #a8a6a6;font-size: 17px;">
+    
+    <p class="text-center" style="font-size: 30px;margin-top: 50px;"> <%= projectInfo.name_project %> </p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;">ความสอดคล้อง</p>
+    <p class="text-left" style="font-size: 18px;margin-left: 30px;">  <%= "ยุทธศาสตร์ประเทศ "+statigy_list[projectInfo.data.strategyInfo.country_strategy] %></p>
+    <p class="text-left" style="font-size: 18px;margin-left: 30px;"> <%= "ยุทธศาสตร์ สพฐ. "+st2_list[projectInfo.data.strategyInfo.spt_strategy] %></p>
+    <p class="text-left" style="font-size: 18px;margin-left: 30px;"><%= "มาตรฐานการศึกษาโรงเรียน "+st3_list[projectInfo.data.strategyInfo.school_standard] %></p>
+    <p class="text-left" style="font-size: 18px;margin-left: 30px;"><%= "ตัวบ่งชี้ "+projectInfo.data.strategyInfo.indicator + " ตัวชี้วัด "+projectInfo.data.strategyInfo.Metric %></p>
+    <p class="text-left" style="font-size: 18px;margin-left: 30px;"> <%= "กลยุทธ์ของโรงเรียน "+st4_list[projectInfo.data.strategyInfo.School_strategy] %></p></p>
+    
+    <p class="text-left" style="font-size: 18px;font-weight: bold;"><%= "ลักษณะของโครงการ : " +projectInfo.data.property_project %></p>
+
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">จุดมุ่งหมาย (Goal)</p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">สาระสำคัญ</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 30px;"><%= projectInfo.data_detail.goal.body %></p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">ตัวชี้วัดความสำเร็จ/เป้าหมาย</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 30px;"><%= projectInfo.data_detail.goal.Success_Indicators %></p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">เงื่อนไขความสำเร็จ</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 30px;"><%= projectInfo.data_detail.goal.Success_conditions %></p>
+    
+    
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">วัตถุประสงค์(Purpose)</p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">สาระสำคัญ</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.purpose.body %></p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">ตัวชี้วัดความสำเร็จ/เป้าหมาย</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.purpose.Success_Indicators %></p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">เงื่อนไขความสำเร็จ</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.purpose.Success_conditions %></p>
+
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">ผลผลิต/ผลงาน (Output)</p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">สาระสำคัญ</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.output.body %></p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">ตัวชี้วัดความสำเร็จ/เป้าหมาย</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.output.Success_Indicators %></p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">เงื่อนไขความสำเร็จ</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.output.Success_conditions %></p>
+
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">กิจกรรม (Activities)</p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">สาระสำคัญ</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.activities.body %></p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">ตัวชี้วัดความสำเร็จ/เป้าหมาย</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.activities.Success_Indicators %></p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">เงื่อนไขความสำเร็จ</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.activities.Success_conditions %></p>
+
+
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">ปัจจัย (Input)</p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">สาระสำคัญ</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.input.body %></p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">ตัวชี้วัดความสำเร็จ/เป้าหมาย</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.input.Success_Indicators %></p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">เงื่อนไขความสำเร็จ</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.input.Success_conditions %></p>
+
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">หลักฐานแหล่งพิสูจน์</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail_2.Proof_of_evidence.Assessment_method %></p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">วิธีการประเมิน</p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">เครื่องมือ</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail_2.Proof_of_evidence.tools %></p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">งบประมาณ (ระบุที่มางบประมาณ เช่น เงินอุดหนุน)</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail_2.Proof_of_evidence.Budget %></p>
+
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">ระยะเวลาดำเนินการ</p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px"><%= "วันที่เริ่มต้น : " + projectInfo.data_detail_2.Proof_of_evidence.Processing_time.Start %></p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px"><%= "วันที่สิ้นสุด : " + projectInfo.data_detail_2.Proof_of_evidence.Processing_time.End %></p>
+
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">ผู้รับผิดชอบ</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail_2.Proof_of_evidence.Responsible_person %></p>
+
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">งบประมาณทั้งหมด</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.Budget.total_budget +" บาท" %></p>
+
+</div>
+
+
+
+     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+</body>
+
+</html>

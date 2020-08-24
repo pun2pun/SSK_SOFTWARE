@@ -1,0 +1,169 @@
+<html>
+
+<head>
+    <title>หน้าแรก</title>
+    <!-- load bootstrap css -->
+    <link rel="stylesheet" href="./bootstrap-4.4.1-dist/css/bootstrap.css">
+    <!-- load fontawesome -->
+    <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+
+<body style="font-family:  'Kanit', sans-serif;">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-pink">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            MENU
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <span class="navbar-text" style="margin-right: 10px;">
+            <strong>ชื่อ</strong> : <%= user.local.name %>
+          </span>
+        <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='/login'" type="button">Logout</button>
+      </form>
+    </div>
+  </nav>
+
+<!--------------------------------------------------------------- Main choice  ---------------->
+<center><img src="image/title-01.jpg" width="1000" height="150"></center>
+  <div class="container" style="width: 1000px;margin-top: 50px; border: 1px solid #a8a6a6;font-size: 17px;">
+    <div class="row">
+      <div class="col-sm-4" style="margin-top: 50px;">
+        
+        <a href="/SFM001"><div class="card text-white bg-warning  mb-3" style="margin-top: 16px; max-width: 16rem;">
+         <div class="card-header"  > <row><col><i class="fa fa-file" ></i></col><col>   </col><col>เสนอโครงการ</col></row> </div>
+        </div></a>
+        
+        <a href="/AP001"><div class="card text-white bg-danger  mb-3" style="max-width: 16rem;">
+          <div class="card-header"  > <row><col><i class="fa fa-search" ></i></col><col>   </col><col>ขออนุมัติจัดกิจกรรม</col></row> </div>
+        </div></a>
+
+        <div class="card text-white bg-info  mb-3" style="max-width: 16rem;">
+          <div class="card-header"  > <row><col><i class="fa fa-check" ></i></col><col>   </col><col>รายงานผลการดำเนินงาน</col></row> </div>
+        </div>
+        <div class="card text-white bg-success  mb-3" style="max-width: 16rem;">
+          <div class="card-header"  > <row><col><i class="fa fa-user" ></i></col><col>   </col><col>รายงานฉบับสมบูรณ์</col></row> </div>
+        </div>
+      </div>
+      <div class="col-sm-8" ">
+        <div style="margin-top: 50px;margin-bottom: 20px;">รายงานแสดงจำนวนโครงการส่งรสยงานฉบับสมบูรณ์ 
+          ปีงบประมาน 2563</div>
+
+        <img style="margin-top: 5px;margin-bottom: 50px;" src="image/chart.jpg" width="600" height="250">
+      </div>
+      <h1 style="margin-top: 50px;"></h1>
+    </div>
+  
+</div>
+
+<!--------------------------------------------------------------- Search my table  ---------------->
+
+<div class="container" style="width: 1000px;margin-top: 20px; border: 1px solid #a8a6a6; background-color: #F3F3F3;">
+
+<p style="font-size: 20px;margin-top: 20px;">ค้นหาข้อมูลโครงการ</p>
+ <form style="margin-left: 150px;">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputState">ปีงบประมาณ</label>
+      <select id="inputState" class="form-control">
+        <option selected>ทั้งหมด</option>
+        <option>2563</option>
+        <option>2564</option>
+        <option>2565</option>
+      </select>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputState">หน่วยงานที่สังกัด</label>
+      <select id="inputState" class="form-control">
+        <option selected>ทั้งหมด</option>
+        <option>...</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputState">สถานะโครงการ</label>
+      <select id="inputState" class="form-control">
+        <option selected>ทั้งหมด</option>
+        <option>เก่า</option>
+        <option>ใหม่</option>
+        <option>ต่อเนื่อง</option>
+        <option>งบด้านวิชาการ</option>
+        <option>งบบริหารทั่วไป</option>
+      </select>
+    </div>  
+    <div class="form-group col-md-4" style="margin-top: 30px;">
+      <button type="submit" class="btn btn-primary col-sm-6">ค้นหา</button>
+    </div>
+  </div>
+
+</form> 
+
+
+<center><table class="table" style="margin-top: 20px;margin-bottom: 50px;width: 900px;" >
+  <thead >
+    <tr class="bg-danger" style="color: azure;">
+      <th scope="col">ลำดับ</th>
+      <th scope="col">ชื่อโครงการ</th>
+      <th scope="col">สถาณะ</th>
+      <th scope="col">      </th>
+    </tr>
+  </thead>
+  <tbody style="text-align: right;">
+
+  <% var list_project = projectInfo %> 
+  <% var number = 0 %> 
+  <% for(var index = 0; index < list_project.length;index++){%>
+  <% if(list_project[index].name_creator == user.local.name){%>
+    <%  number = number+1  %> 
+    <tr style="font-weight: normal;background-color: white;" >
+      <th scope="row" style="text-align: left;"><%= number %> </th>
+      <td style="text-align: left;"><%=  list_project[index].name_project %></td>
+      <td style="text-align: left;"><%=  list_project[index].project_status %></td>
+      <% var link = "storeFile/"+list_project[index].name_project+".docx" %> 
+
+      <form action="/projectDetail" method="POST">
+      <td> 
+        
+        <input type="hidden" name="name_project"  id="name_project" value="<%= list_project[index].name_project %>">
+        <button class="btn btn-info" type="submit" >view</button>
+      
+        <a href="<%= link %>" download><button class="btn btn-info"  >download</button></a>
+      </td>
+    </form>
+    
+    </tr>
+  <% }} %> 
+   
+  </tbody>
+</table>
+</center>
+
+</div>
+
+
+<!--------------------------------------------------------------- footer ---------------->
+
+
+     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+</body>
+
+</html>

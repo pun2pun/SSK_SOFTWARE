@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <title>ขออนุมัติจัดกิจกรรม</title>
+    <!-- load bootstrap css -->
+    <link rel="stylesheet" href="./bootstrap-4.4.1-dist/css/bootstrap.css">
+    <!-- load fontawesome -->
+    <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+
+<body style="font-family:  'Kanit', sans-serif;">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-pink">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            MENU
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <span class="navbar-text" style="margin-right: 10px;">
+            <strong>ชื่อ</strong> : <%= user.local.name %>
+          </span>
+        <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='/login'" type="button">Logout</button>
+      </form>
+    </div>
+  </nav>
+
+<!--------------------------------------------------------------- Main choice  ---------------->
+<center><img src="image/title-01.jpg" width="1000" height="150"></center>
+
+<form action="/AP002" method="POST">
+
+  
+<div class="container" style="width: 1000px;margin-top: 50px; border: 1px solid #a8a6a6;font-size: 17px;background-color:#f7f7f7 ;">
+    <div class="container" style="width: 700px;margin-top: 50px; border: 1px solid rgb(252, 130, 173);font-size: 17px;background-color: rgb(252, 130, 173);">
+        <div class="input-group mb-3" style="margin-top: 20px;">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">เลือกโครงการ</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" name="inputGroupSelect01">
+              <option selected>Choose...</option>
+              <% for(var index = 0; index < projectInfo.length;index++){%>
+                <% if(projectInfo[index].name_creator == user.local.name){%>
+                  
+               
+                  <option value="<%= projectInfo[index].name_project %>" ><%= projectInfo[index].name_project %> </option>
+                 
+                <% }} %> 
+            </select>
+          </div>
+          
+    </div>
+
+    <div style="margin-top: 20px;margin-bottom: 20px;"><center>
+        <button type="submit" value="submited" class="btn btn-success" data-toggle="modal" data-target="#myModal">ขออนุมัติ</button>
+        <button type="button"  class="btn btn-danger">ยกเลิก</button>
+       </div></center>
+    </form>
+</div>
+
+
+<!--------------------------------------------------------------- footer ---------------->
+
+
+     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+{
+  "name": "authentication-node-example",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "~1.0.2",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.4.1",
+    "connect-flash": "~0.1.1",
+    "cookie-parser": "~1.4.3",
+    "csv-write-stream": "^2.0.0",
+    "debug": "~2.6.3",
+    "docx": "^5.2.0",
+    "ejs": "~2.5.6",
+    "express": "^4.17.1",
+    "express-session": "~1.15.4",
+    "fs": "0.0.1-security",
+    "method-override": "~2.3.9",
+    "mongoose": "~4.11.3",
+    "morgan": "^1.9.1",
+    "passport": "~0.3.2",
+    "passport-facebook": "~2.1.1",
+    "passport-google-oauth": "~1.0.0",
+    "passport-local": "~1.0.0",
+    "passport-twitter": "~1.0.4",
+    "serve-favicon": "~2.4.2",
+    "signature_pad": "^3.0.0-beta.3"
+  }
+}

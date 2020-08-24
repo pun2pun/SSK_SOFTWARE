@@ -1,0 +1,276 @@
+<html>
+
+<head>
+    <title>ขออนุมัติจัดกิจกรรม</title>
+    <!-- load bootstrap css -->
+    <link rel="stylesheet" href="./bootstrap-4.4.1-dist/css/bootstrap.css">
+    <!-- load fontawesome -->
+    <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+
+<body style="font-family:  'Kanit', sans-serif;">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-pink">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            MENU
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <span class="navbar-text" style="margin-right: 10px;">
+            <strong>ชื่อ</strong> : <%= user.local.name %>
+          </span>
+        <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='/login'" type="button">Logout</button>
+      </form>
+    </div>
+  </nav>
+
+<!--------------------------------------------------------------- Main choice  ---------------->
+<center><img src="image/title-01.jpg" width="1000" height="150"></center>
+
+<form action="/AP003" method="POST">
+
+    <input type="hidden" name="name_project" value="<%= project_select.inputGroupSelect01 %>">
+ 
+<div class="container" style="width: 1000px;margin-top: 50px; border: 1px solid #a8a6a6;font-size: 17px;background-color:#ffffff ;">
+    
+    <div  class="form-inline" style="margin-top: 50px;margin-left: 50px;" >
+        <label style="font-size: 18px; margin-left: 10px;">เรียน ผู้อำนวยการ</label>  
+    </div>
+
+    <div class="form-inline" style="margin-top: 10px;margin-left: 50px;">
+        <label style="font-size: 18px; margin-left: 10px;">ด้วย กลุ่มบริการงาน/งาน/กลุ่มสาระ</label>
+        <input style="width: 300px;margin-left: 5px;" id="Department" name="Department" type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+        <label style="font-size: 18px; margin-left: 10px;">มีความประสงค์จำดำเนินงามตาม </label>
+    </div>
+
+
+    <div class="container" style="width: 700px;margin-top: 50px; border: 1px solid #a8a6a6;font-size: 17px;background-color: #a8a6a6">
+    <center>    
+        <div class="input-group mb-3" style="margin-top: 20px;width: 500px;">
+            <div class="input-group-prepend">
+            <div class="input-group-text">
+                <input type="checkbox" aria-label="Checkbox for following text input">
+            </div>
+            </div>
+            <span class="input-group-text">งบกลาง</span>
+            <input type="text"  class="form-control" aria-label="Text input with checkbox">        
+        </div>
+    </center>
+    </div>
+    
+    <div class="container" style="width: 700px;margin-top: 50px;margin-bottom: 50px; border: 1px solid #a8a6a6;font-size: 17px;background-color: #a8a6a6">
+        <center>    
+            <div class="input-group mb-3" style="margin-top: 20px;width: 500px;">
+                <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <input type="checkbox" aria-label="Checkbox for following text input">
+                </div>
+                </div>
+                <span class="input-group-text">งานประจำ</span>
+                <input type="text" class="form-control" aria-label="Text input with checkbox">        
+            </div>
+        </center>
+        </div>
+
+    
+        <div class="container" style="width: 700px;margin-top: 50px; border: 1px solid #a8a6a6;font-size: 17px;background-color: #a8a6a6">
+            <center>    
+                <div class="input-group mb-3" style="margin-top: 20px;width: 500px;">
+                    <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="checkbox" aria-label="Checkbox for following text input">
+                    </div>
+                    </div>
+                    <span class="input-group-text">กลยุทธ์ โครงการ(หลัก)</span>
+                    <input type="text" class="form-control" aria-label="Text input with checkbox">        
+                </div>
+                <div class="input-group mb-3" style="margin-top: 20px;width: 500px;">
+                    <div class="input-group-prepend">
+                    </div>
+                    <span class="input-group-text">กิจกรรม(หลัก)</span>
+                    <input type="text" class="form-control" aria-label="Text input with checkbox">        
+                </div>
+            </center>
+        </div>
+      
+        <div>
+            <div  class="form-inline" style="margin-top: 10px;margin-left: 50px;" >
+                <label style="font-size: 18px;background-color: #296DE2;width: 30px;color: #ffff;" > 2 </label>
+                <label style="font-size: 18px; margin-left: 10px;">เพื่อดำเนินงานดังนี้</label>
+            </div>
+            <div style="margin-top: 5px;margin-left: 80px;">
+                <textarea class="form-control" style="width: 800px; height: 150px;" name="Detail" id="Detail"  > </textarea>
+            </div>
+        </div>
+
+        <div  class="form-inline" style="margin-top: 10px;margin-left: 50px;" >
+            <label style="font-size: 18px;background-color: #296DE2;width: 30px;color: #ffff;" > 3 </label>
+            <label style="font-size: 18px; margin-left: 10px;">งบประมาณที่ได้รับ</label>
+        </div>
+        <div class="container" style="width: 700px;margin-top: 50px;margin-bottom: 50px; border: 1px solid #a8a6a6;font-size: 17px;background-color: #a8a6a6">
+            <center>    
+                <div class="input-group mb-3" style="margin-top: 20px;width: 500px;">
+                    <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="checkbox" aria-label="Checkbox for following text input">
+                    </div>
+                    </div>
+                    <span class="input-group-text">เงินอุดหนุนค่าเล่าเรียน</span>
+                    <input type="text" class="form-control" name="Study_budget" id="Study_budget" aria-label="Text input with checkbox">        
+                </div>
+                <div class="input-group mb-3" style="margin-top: 20px;width: 500px;">
+                    <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="checkbox" aria-label="Checkbox for following text input">
+                    </div>
+                    </div>
+                    <span class="input-group-text">เงินอุดหนุนกิจกรรมพัฒนาผู้เรียน</span>
+                    <input type="text" class="form-control" name="Activity_budget" id="Activity_budget" aria-label="Text input with checkbox">        
+                </div>
+                <div class="input-group mb-3" style="margin-top: 20px;width: 500px;">
+                    <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="checkbox" aria-label="Checkbox for following text input">
+                    </div>
+                    </div>
+                    <span class="input-group-text">เงินรายได้สถานศึกษา</span>
+                    <input type="text" class="form-control"  name="Income_shool" id="Income_shool"  aria-label="Text input with checkbox">        
+                </div>
+                <div class="input-group mb-3" style="margin-top: 20px;width: 500px;">
+                    <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="checkbox" aria-label="Checkbox for following text input">
+                    </div>
+                    </div>
+                    <span class="input-group-text">เงินงบประมาณ</span>
+                    <input type="text" class="form-control" name="Genaral_budget" id="Genaral_budget" aria-label="Text input with checkbox">        
+                </div>
+                <div class="input-group mb-3" style="margin-top: 20px;width: 500px;">
+                    <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="checkbox"  aria-label="Checkbox for following text input">
+                    </div>
+                    </div>
+                    <span class="input-group-text">เงินอื่นๆ (ระบุ)</span>
+                    <input type="text" class="form-control" name="Other" id="Other" aria-label="Text input with checkbox">        
+                </div>
+            </center>
+            </div>
+
+            <div class="container" style="width: 700px;margin-top: 50px;margin-bottom: 50px; border: 1px solid #a8a6a6;font-size: 17px;background-color: #a8a6a6">
+                <center>    
+                    <div class="input-group mb-3" style="margin-top: 20px;width: 500px;">
+                        <div class="input-group-prepend">
+                        </div>
+                        <span class="input-group-text">ครั้งนี้เบิกเป็นเงิน แยกประเภทดังนี้</span>
+                               
+                    </div>
+                    <div class="input-group mb-3" style="margin-top: 20px;width: 500px;">
+                        <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" aria-label="Checkbox for following text input">
+                        </div>
+                        </div>
+                        <span class="input-group-text">ตอบแทนใช้สอย</span>
+                        <input type="text"  name="Genaral" id="Genaral" class="form-control" aria-label="Text input with checkbox">        
+                    </div>
+                    <div class="input-group mb-3" style="margin-top: 20px;width: 500px;">
+                        <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" aria-label="Checkbox for following text input">
+                        </div>
+                        </div>
+                        <span class="input-group-text">ค่าวัสดุ</span>
+                        <input type="text" name="Material" id="Material" class="form-control" aria-label="Text input with checkbox">        
+                    </div>
+                    <div class="input-group mb-3" style="margin-top: 20px;width: 500px;">
+                        <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" aria-label="Checkbox for following text input">
+                        </div>
+                        </div>
+                        <span class="input-group-text">ค่าครุภัณฑ์</span>
+                        <input type="text"  name="Equipment" id="Equipment" class="form-control" aria-label="Text input with checkbox">        
+                    </div>
+                    <div class="input-group mb-3" style="margin-top: 20px;width: 500px;">
+                        <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" aria-label="Checkbox for following text input">
+                        </div>
+                        </div>
+                        <span class="input-group-text">ค่าจ้าง</span>
+                        <input type="text" name="Wage" id="Wage"  class="form-control" aria-label="Text input with checkbox">        
+                    </div>
+                    <div class="input-group mb-3" style="margin-top: 20px;width: 500px;">
+                        <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" aria-label="Checkbox for following text input">
+                        </div>
+                        </div>
+                        <span class="input-group-text">เงินอื่นๆ (ระบุ)</span>
+                        <input type="text" name="Other_pay" id="Other_pay"  class="form-control" aria-label="Text input with checkbox">        
+                    </div>
+                </center>
+                </div>
+
+
+    
+
+                <div  class="form-inline" style="margin-top: 10px;margin-left: 50px;" >
+                    <label style="font-size: 18px;background-color: #296DE2;width: 30px;color: #ffff;" > 4 </label>
+                    <label style="font-size: 18px; margin-left: 10px;">งาน/โครงการนี้ได้รับงบประมาณ</label>
+                    <input style="width: 500px;margin-left: 5px;" id="Budget_project" name="Budget_project" type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+
+                <div  class="form-inline" style="margin-top: 10px;margin-left: 50px;" >
+                    <label style="font-size: 18px;background-color: #296DE2;width: 30px;color: #ffff;" > 5 </label>
+                    <label style="font-size: 18px; margin-left: 10px;">คงเหลือ</label>
+                    <input style="width: 500px;margin-left: 5px;" id="Budget_project_balance" name="Budget_project_balance" type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+
+                <div  class="form-inline" style="margin-top: 10px;margin-left: 50px;" >
+                    <label style="font-size: 18px;background-color: #296DE2;width: 30px;color: #ffff;" > 6 </label>
+                    <label style="font-size: 18px; margin-left: 10px;">ในครั้งนี้เบิกเป็นเงิน</label>
+                    <input style="width: 500px;margin-left: 5px;" id="Withdraw" name="Withdraw" type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+
+                <div  class="form-inline" style="margin-top: 10px;margin-left: 50px;margin-bottom: 50px;" >
+                    <label style="font-size: 18px;background-color: #296DE2;width: 30px;color: #ffff;" > 7 </label>
+                    <label style="font-size: 18px; margin-left: 10px;">คงเหลือ</label>
+                    <input style="width: 500px;margin-left: 5px;" id="balacne_after_withdraw" name="balacne_after_withdraw" type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+
+                <div style="margin-top: 20px;"><center>
+                     <button type="submit" value="submited" class="btn btn-success" data-toggle="modal" data-target="#myModal">ขออนุมัติ</button>
+                   <button type="button" class="btn btn-danger">ยกเลิก</button>
+                  </div></center>
+                  </form>
+                  <div style="margin-top :50px"></div>
+
+</div>
+
+
+<!--------------------------------------------------------------- footer ---------------->
+
+
+     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+</body>
+
+</html>
