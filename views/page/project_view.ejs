@@ -48,57 +48,56 @@
 <center><img src="image/title-01.jpg" width="1000" height="150"></center>
   <div class="container" style="width: 1000px;margin-top: 50px; margin-bottom: 50px; border: 1px solid #a8a6a6;font-size: 17px;">
     
-    <p class="text-center" style="font-size: 30px;margin-top: 50px;"> <%= projectInfo.name_project %> </p>
-    <p class="text-left" style="font-size: 18px;font-weight: bold;">ความสอดคล้อง</p>
-    <p class="text-left" style="font-size: 18px;margin-left: 30px;">  <%= "ยุทธศาสตร์ประเทศ "+statigy_list[projectInfo.data.strategyInfo.country_strategy] %></p>
-    <p class="text-left" style="font-size: 18px;margin-left: 30px;"> <%= "ยุทธศาสตร์ สพฐ. "+st2_list[projectInfo.data.strategyInfo.spt_strategy] %></p>
-    <p class="text-left" style="font-size: 18px;margin-left: 30px;"><%= "มาตรฐานการศึกษาโรงเรียน "+st3_list[projectInfo.data.strategyInfo.school_standard] %></p>
-    <p class="text-left" style="font-size: 18px;margin-left: 30px;"><%= "ตัวบ่งชี้ "+projectInfo.data.strategyInfo.indicator + " ตัวชี้วัด "+projectInfo.data.strategyInfo.Metric %></p>
-    <p class="text-left" style="font-size: 18px;margin-left: 30px;"> <%= "กลยุทธ์ของโรงเรียน "+st4_list[projectInfo.data.strategyInfo.School_strategy] %></p></p>
-    
-    <p class="text-left" style="font-size: 18px;font-weight: bold;"><%= "ลักษณะของโครงการ : " +projectInfo.data.property_project %></p>
-
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">จุดมุ่งหมาย (Goal)</p>
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">สาระสำคัญ</p>
-    <p class="text-break"  style="font-size: 18px;margin-left: 30px;"><%= projectInfo.data_detail.goal.body %></p>
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">ตัวชี้วัดความสำเร็จ/เป้าหมาย</p>
-    <p class="text-break"  style="font-size: 18px;margin-left: 30px;"><%= projectInfo.data_detail.goal.Success_Indicators %></p>
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">เงื่อนไขความสำเร็จ</p>
-    <p class="text-break"  style="font-size: 18px;margin-left: 30px;"><%= projectInfo.data_detail.goal.Success_conditions %></p>
+    <p class="text-center" style="font-size: 20px;margin-top: 50px;"> รายละเอียดโครงการ/กิจกรรม ปีงบประมาณ 2564 </p>
+    <p class="text-center" style="font-size: 20px;">โรงเรียนสตรีสิริเกศ</p>
+    <p class="text-center" style="font-size: 20px;">(<%=projectInfo.Budget_type %>)</p>
+    <p class="text-center" style="font-size: 20px;">………………………………………………………………</p>
     
     
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">วัตถุประสงค์(Purpose)</p>
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">สาระสำคัญ</p>
-    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.purpose.body %></p>
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">ตัวชี้วัดความสำเร็จ/เป้าหมาย</p>
-    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.purpose.Success_Indicators %></p>
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">เงื่อนไขความสำเร็จ</p>
-    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.purpose.Success_conditions %></p>
+    <p class="text-left" style="font-size: 18px;"><%= "1. ลักษณะของโครงการ : " +projectInfo.data.property_project %></p>
+    <p class="text-left" style="font-size: 18px;"><%= "2. โครงการ / กิจกรรม : " +projectInfo.name_project %></p>
 
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">ผลผลิต/ผลงาน (Output)</p>
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">สาระสำคัญ</p>
-    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.output.body %></p>
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">ตัวชี้วัดความสำเร็จ/เป้าหมาย</p>
-    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.output.Success_Indicators %></p>
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">เงื่อนไขความสำเร็จ</p>
-    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.output.Success_conditions %></p>
+    <table class="table table-bordered" style="margin-top: 50px;">
+      <thead>
+        <tr style="vertical-align: middle;" >
+          <th scope="col"">สาระสำคัญ </th>
+          <th scope="col">ตัวชี้วัดความสำเร็จ/เป้าหมาย</th>
+          <th scope="col">เงื่อนไขความสำเร็จ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope="row"><p style="font-weight: bold;">จุดมุ่งหมาย (Goal)</p><%= projectInfo.data_detail.goal.body %></td>
+          <td><%= projectInfo.data_detail.goal.Success_Indicators %></td>
+          <td><%= projectInfo.data_detail.goal.Success_conditions %></td>
+        </tr>
 
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">กิจกรรม (Activities)</p>
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">สาระสำคัญ</p>
-    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.activities.body %></p>
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">ตัวชี้วัดความสำเร็จ/เป้าหมาย</p>
-    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.activities.Success_Indicators %></p>
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">เงื่อนไขความสำเร็จ</p>
-    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.activities.Success_conditions %></p>
+        <tr>
+          <td scope="row"><p style="font-weight: bold;">วัตถุประสงค์(Purpose)</p><%= projectInfo.data_detail.purpose.body %></td>
+          <td><%= projectInfo.data_detail.purpose.Success_Indicators %></td>
+          <td><%= projectInfo.data_detail.purpose.Success_conditions %></td>
+        </tr>
 
+        <tr>
+          <td scope="row"><p style="font-weight: bold;">ผลผลิต/ผลงาน (Output)</p><%= projectInfo.data_detail.output.body %></td>
+          <td><%= projectInfo.data_detail.output.Success_Indicators %></td>
+          <td><%= projectInfo.data_detail.output.Success_conditions %></td>
+        </tr>
 
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">ปัจจัย (Input)</p>
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">สาระสำคัญ</p>
-    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.input.body %></p>
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">ตัวชี้วัดความสำเร็จ/เป้าหมาย</p>
-    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.input.Success_Indicators %></p>
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">เงื่อนไขความสำเร็จ</p>
-    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail.input.Success_conditions %></p>
+        <tr>
+          <td scope="row"><p style="font-weight: bold;">กิจกรรม (Activities)</p><%= projectInfo.data_detail.activities.body %></td>
+          <td><%= projectInfo.data_detail.activities.Success_Indicators %></td>
+          <td><%= projectInfo.data_detail.activities.Success_conditions %></td>
+        </tr>
+
+        <tr>
+          <td scope="row"><p style="font-weight: bold;">ปัจจัย (Input)</p><%= projectInfo.data_detail.input.body %></td>
+          <td><%= projectInfo.data_detail.input.Success_Indicators %></td>
+          <td><%= projectInfo.data_detail.input.Success_conditions %></td>
+        </tr>
+     
+      </tbody>
+    </table>
 
     <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">หลักฐานแหล่งพิสูจน์</p>
     <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail_2.Proof_of_evidence.Assessment_method %></p>
@@ -106,8 +105,12 @@
     <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">เครื่องมือ</p>
     <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail_2.Proof_of_evidence.tools %></p>
     <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">งบประมาณ (ระบุที่มางบประมาณ เช่น เงินอุดหนุน)</p>
-    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail_2.Proof_of_evidence.Budget %></p>
-
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= "เงินอุดหนุนรายหัว : "+projectInfo.data_detail_2.Proof_of_evidence.Budget[0]+" บาท" %></p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= "เงินรายได้สถาณศึกษา : "+projectInfo.data_detail_2.Proof_of_evidence.Budget[1]+" บาท" %></p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= "เงินงบประมาณ : "+projectInfo.data_detail_2.Proof_of_evidence.Budget[2]+" บาท" %></p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= "เงินกิจกรรมพัฒนาผู้เรียน : "+projectInfo.data_detail_2.Proof_of_evidence.Budget[3]+" บาท" %></p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= "เงินอื่นๆ : "+projectInfo.data_detail_2.Proof_of_evidence.Budget[4]+" บาท" %></p>
+   
     <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">ระยะเวลาดำเนินการ</p>
     <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px"><%= "วันที่เริ่มต้น : " + projectInfo.data_detail_2.Proof_of_evidence.Processing_time.Start %></p>
     <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px"><%= "วันที่สิ้นสุด : " + projectInfo.data_detail_2.Proof_of_evidence.Processing_time.End %></p>
@@ -115,11 +118,232 @@
     <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">ผู้รับผิดชอบ</p>
     <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail_2.Proof_of_evidence.Responsible_person %></p>
 
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">งบประมาณทั้งหมด</p>
-    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.Budget.total_budget +" บาท" %></p>
 
+
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin-top: 30px;">
+
+    <div class="row"style="margin-top: 50px;">
+      <div class="col">
+        <div class="d-flex justify-content-center">
+        <p class="text-break">ลงชื่อ ..............................................ผู้เสนอโครงการ</p>
+     </div>
+     <div class="d-flex justify-content-center">
+      <p class="text-break">(ผู้รับผิดชอบโครงการ)</p>
+   </div>
+     </div>
+          <div class="col">
+        <div class="d-flex justify-content-center">
+        <p class="text-break">ลงชื่อ ..............................................ผู้เสนอโครงการ</p>
+     </div>
+     <div class="d-flex justify-content-center">
+      <p class="text-break">(หัวหน้ากลุ่ม/งาน/กลุ่มสาระฯ)</p>
+   </div>
+     </div>
+     </div>
+
+
+     <div class="row" style="margin-top: 40px;">
+      <div class="col">
+        <div class="d-flex justify-content-center">
+        <p class="text-break">ลงชื่อ ..............................................ผู้เห็นชอบโครงการ</p>
+     </div>
+     <div class="d-flex justify-content-center">
+      <p class="text-break">(รองผู้อำนวยการตามสายงาน)</p>
+   </div>
+     </div>
+          <div class="col">
+        <div class="d-flex justify-content-center">
+        <p class="text-break">ลงชื่อ ..............................................ผู้เห็นชอบโครงการ</p>
+     </div>
+     <div class="d-flex justify-content-center">
+      <p class="text-break">(รอง ผอ.กลุ่มงบประมาณและแผนฯ)</p>
+   </div>
+     </div>
+     </div>
+
+     <div class="d-flex justify-content-center" style="margin-top: 70px;">
+      <p class="text-break">ลงชื่อ ..............................................ผู้อนุมัติโครงการ</p>
+     </div>
+    <div class="d-flex justify-content-center">
+    <p class="text-break">(ผู้อำนวยการโรงเรียน)</p>
+      </div>
 </div>
 
+
+<div class="container" style="width: 1000px;margin-top: 50px; margin-bottom: 50px; border: 1px solid #a8a6a6;font-size: 17px;">
+  <p class="text-center" style="font-size: 20px;margin-top: 50px;"> ทรัพยากรโครงการ/กิจกรรม <%= projectInfo.name_project %> ปีงบประมาณ 2564 </p>
+
+
+  <table class="table table-bordered" style="margin-top: 50px;">
+    <thead>
+      <tr style="vertical-align: middle;" >
+        <th scope="col">ที่ </th>
+        <th scope="col">รายการ</th>
+        <th scope="col">ราคา</th>
+        <th scope="col">หน่วยนับ</th>
+        <th scope="col">ภาคเรียนที่ 2/2563</th>
+        <th scope="col">ภาคเรียนที่ 1/2564</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1 </th>
+        <th  style="font-weight: bold;">งบบุคลากร (ค่าจ้างชั่วคราว)</th>
+        <th scope="row"></th>
+        <th scope="row"></th>
+        <th scope="row"> </th>
+        <th scope="row"> </th>
+      </tr> 
+      
+      
+      <% for(var i = 0;i< projectInfo.Budget.person.length;i++){ %>
+        <tr>
+        <th > </th>
+        <th  style="font-weight: lighter;"><%= projectInfo.Budget.person[i][0] %></th>
+        <th ></th>
+        <th ></th>
+        <th style="font-weight: lighter;"><%= projectInfo.Budget.person[i][1] %></th>
+        <th > </th>
+      </tr>
+        <% }%>
+        <tr>
+          <th scope="row">2 </th>
+          <th  style="font-weight: bold;">งบดำเนินงาน</th>
+          <th scope="row"></th>
+          <th scope="row"></th>
+          <th scope="row"> </th>
+          <th scope="row"> </th>
+        </tr> 
+        <tr>
+          <th scope="row"> </th>
+          <th  style="font-weight: bold;">-ค่าตอบแทน </th>
+          <th scope="row"></th>
+          <th scope="row"></th>
+          <th scope="row"> </th>
+          <th scope="row"> </th>
+        </tr>
+        
+        <% for(var j = 0;j< projectInfo.Budget.operating_budget.Compensation.length;j++){ %>
+          <tr>
+          <th > </th>
+          <th  style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Compensation[j][0] %></th>
+          <th ></th>
+          <th ></th>
+          <th style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Compensation[j][1] %></th>
+          <th > </th>
+        </tr>
+          <% }%>
+
+          <tr>
+            <th scope="row"> </th>
+            <th  style="font-weight: bold;">-ค่าใช้สอย </th>
+            <th scope="row"></th>
+            <th scope="row"></th>
+            <th scope="row"> </th>
+            <th scope="row"> </th>
+          </tr>
+
+          <% for(var j = 0;j< projectInfo.Budget.operating_budget.Living_expenses.length;j++){ %>
+            <tr>
+            <th > </th>
+            <th  style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Living_expenses[j][0] %></th>
+            <th ></th>
+            <th ></th>
+            <th style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Living_expenses[j][1] %></th>
+            <th > </th>
+          </tr>
+            <% }%>
+            <tr>
+              <th scope="row"> </th>
+              <th  style="font-weight: bold;">-ค่าวัสดุ </th>
+              <th scope="row"></th>
+              <th scope="row"></th>
+              <th scope="row"> </th>
+              <th scope="row"> </th>
+            </tr>
+
+            <% for(var j = 0;j< projectInfo.Budget.operating_budget.Material_cost.length;j++){ %>
+              <tr>
+              <th > </th>
+              <th  style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Material_cost[j][0] %></th>
+              <th ></th>
+              <th ></th>
+              <th style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Material_cost[j][1] %></th>
+              <th > </th>
+            </tr>
+              <% }%>
+
+              <tr>
+                <th scope="row"> </th>
+                <th  style="font-weight: bold;">-ค่าสาธารณู </th>
+                <th scope="row"></th>
+                <th scope="row"></th>
+                <th scope="row"> </th>
+                <th scope="row"> </th>
+              </tr>
+              <% for(var j = 0;j< projectInfo.Budget.operating_budget.Public_utility_cost.length;j++){ %>
+                <tr>
+                <th > </th>
+                <th  style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Public_utility_cost[j][0] %></th>
+                <th ></th>
+                <th ></th>
+                <th style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Public_utility_cost[j][1] %></th>
+                <th > </th>
+              </tr>
+                <% }%>
+                <tr>
+                  <th scope="row">3</th>
+                  <th  style="font-weight: bold;">งบลงทุน</th>
+                  <th scope="row"></th>
+                  <th scope="row"></th>
+                  <th scope="row"> </th>
+                  <th scope="row"> </th>
+                </tr> 
+                <tr>
+                  <th scope="row"> </th>
+                  <th  style="font-weight: bold;">-ครุภัณฑ์ </th>
+                  <th scope="row"></th>
+                  <th scope="row"></th>
+                  <th scope="row"> </th>
+                  <th scope="row"> </th>
+                </tr>
+                <% for(var j = 0;j< projectInfo.Budget.investment_budget.durable_articles.length;j++){ %>
+                  <tr>
+                  <th > </th>
+                  <th  style="font-weight: lighter;"><%= projectInfo.Budget.investment_budget.durable_articles[j][0] %></th>
+                  <th ></th>
+                  <th ></th>
+                  <th style="font-weight: lighter;"><%= projectInfo.Budget.investment_budget.durable_articles[j][1] %></th>
+                  <th > </th>
+                </tr>
+                  <% }%>
+                  <tr>
+                    <th scope="row"> </th>
+                    <th  style="font-weight: bold;">-สิ่งก่อสร้าง </th>
+                    <th scope="row"></th>
+                    <th scope="row"></th>
+                    <th scope="row"> </th>
+                    <th scope="row"> </th>
+                  </tr>
+                  <% for(var j = 0;j< projectInfo.Budget.investment_budget.Structure_cost.length;j++){ %>
+                    <tr>
+                    <th > </th>
+                    <th  style="font-weight: lighter;"><%= projectInfo.Budget.investment_budget.Structure_cost[j][0] %></th>
+                    <th ></th>
+                    <th ></th>
+                    <th style="font-weight: lighter;"><%= projectInfo.Budget.investment_budget.Structure_cost[j][1] %></th>
+                    <th > </th>
+                  </tr>
+                    <% }%>
+     
+    </tbody>
+
+  </table>
+
+
+
+
+</div>
 
 
      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

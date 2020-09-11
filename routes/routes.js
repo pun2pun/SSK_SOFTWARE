@@ -7,11 +7,15 @@ module.exports = function (app, passport) {
     var User = require('../models/user');
     var infoShema = require('../models/infoShema');
     var forAppove = require('../models/forAppove');
+    var departmemtdb = require('../models/departmemtdb');
+    var plandb = require('../models/plandb');
+    var randomstring = require("randomstring");
     var budgetSpare;
 
     //หน้าหลัก
     app.get('/', function (req, res) {
-        res.render('page/index.ejs'); 
+        res.render('page/login.ejs', { message: req.flash('loginMessage') });
+    
     });
 
     //หน้าเข้าสู่ระบบ
@@ -28,41 +32,103 @@ module.exports = function (app, passport) {
         failureFlash: true // allow flash messages
     }));
 
-    app.post('/SFM002',function(req,res){
-        console.log(req.body.name_project)
+    //เสนอโครงการ
 
-        var newInfoProject = new infoShema();
+    app.get('/SFM000', isLoggedIn, function (req, res) {
         
-        newInfoProject.name_project = req.body.name_project;
-        newInfoProject.name_creator = req.body.user_name;
-        newInfoProject.data.year_project = req.body.year_project;
-        newInfoProject.data.property_project = req.body.property_project;
 
-    
-        newInfoProject.data.strategyInfo.country_strategy =  req.body.country_strategy;
-        newInfoProject.data.strategyInfo.spt_strategy =  req.body.spt_strategy;
-        newInfoProject.data.strategyInfo.school_standard =  req.body.school_standard;
-        newInfoProject.data.strategyInfo.indicator =  req.body.indicator;
-        newInfoProject.data.strategyInfo.Metric =  req.body.Metric;
-        newInfoProject.data.strategyInfo.School_strategy =  req.body.School_strategy;
-        newInfoProject.data.strategyInfo.Main_project =  req.body.Main_project;
-        newInfoProject.data.strategyInfo.Main_activities =  req.body.Main_activities;
-
-        if(req.body.name_project != null || req.body.name_project.trim() !=""){
-            newInfoProject.save(function (err) {
-                if (err)
-                    throw err;
-               
+        departmemtdb.find(function(er,data){
+           // console.log(data);
+            res.render('page/send_form_0.ejs', {
+                user: req.user,
+                departmentData:data
             });
-        }
+        })
+
+
        
-
-
-        res.render('page/send_form_2.ejs',{
-            user: req.user,
-            name_project:req.body.name_project
-            
+    });
+    app.get('/SFM001', isLoggedIn, function (req, res) {
+        
+        res.render('page/send_form_1.ejs', {
+            user: req.user
         });
+    });
+    app.get('/SFM002', isLoggedIn, function (req, res) {
+        res.render('page/send_form_2.ejs', {
+            user: req.user
+        });
+    });
+    app.get('/SFM003', isLoggedIn, function (req, res) {
+        res.render('page/send_form_3.ejs', {
+            user: req.user
+        });
+    });
+    app.get('/SFM004', isLoggedIn, function (req, res) {
+        res.render('page/send_form_4.ejs', {
+            user: req.user
+        });
+    });
+
+    app.post('/SFM001', function (req, res) {
+        console.log(req.user);
+        var newInfoProject = new infoShema();
+        var project_id = randomstring.generate(30);
+        newInfoProject.project_ID = project_id
+        newInfoProject.name_creator = req.user.local.name;
+        newInfoProject.department = req.body.departmentSelect;
+        newInfoProject.Budget_type = req.body.budgetTypeSelect;
+        
+     
+        newInfoProject.save(function(){
+            plandb.findOne({},function(err,data){
+                //console.log(data);
+                res.render('page/send_form_1.ejs', {
+                    user: req.user,
+                    project_ID:project_id,
+                    budget_type:req.body.budgetTypeSelect,
+                    plan_info:data
+                });
+            })
+        })
+        
+    });
+
+    app.post('/SFM002',function(req,res){
+
+        console.log(req.body)
+        
+        const filter = {project_ID:req.body.project_ID};
+        const update = {
+            name_project:req.body.name_project,
+            data:{
+                year_project: req.body.year_project,
+                property_project:req.body.property_project,
+                strategyInfo:
+                    {
+                        country_strategy:req.body.country_strategy,
+                        spt_strategy: req.body.spt_strategy,
+                        school_standard:  req.body.school_standard,
+                        indicator:  req.body.indicator,
+                        Metric: req.body.Metric,
+                        School_strategy: req.body.School_strategy,
+                        Main_project: req.body.Main_project,
+                        Main_activities: req.body.Main_activities,
+                    }
+            }
+
+        }
+        
+       
+        infoShema.findOneAndUpdate(filter,update,{new: true,upsert:true}, function(err,doc){
+            // console.log(doc)
+             if(err){ console.log(err)}
+             res.render('page/send_form_2.ejs',{
+                 user: req.user,
+                 project_ID:req.body.project_ID,
+                 budget_type:[req.body.budget_type,req.body.indicator,req.body.Metric]
+             });
+         })
         
     })
 
@@ -72,7 +138,7 @@ module.exports = function (app, passport) {
     app.post('/SFM003',function(req,res){
         //console.log(req.body.name_project)
               
-        const filter = {name_project:req.body.name_project};
+        const filter = {project_ID:req.body.project_ID};
         const update = {data_detail:{ 
             goal:{
                 body:req.body.g4_1,
@@ -110,7 +176,7 @@ module.exports = function (app, passport) {
             if(err){ console.log(err)}
             res.render('page/send_form_3.ejs',{
                 user: req.user,
-                name_project:req.body.name_project
+                project_ID:req.body.project_ID
             });
         })
         
@@ -120,13 +186,13 @@ module.exports = function (app, passport) {
 
     app.post('/SFM004',function(req,res){
        // console.log(req.body)
-        const filter = {name_project:req.body.name_project};
+        const filter = {project_ID:req.body.project_ID};
         const update = {data_detail_2:{ 
             Proof_of_evidence:
             {
                 Assessment_method:req.body.s9_1,
                 tools:req.body.s9_2,
-                Budget:req.body.s9_3,
+                Budget:[req.body.budget_1,req.body.budget_2,req.body.budget_3,req.body.budget_4,req.body.budget_5,req.body.budget_6],
                 Processing_time:{ Start:req.body.start_time , End:req.body.end_time},
                 Responsible_person:req.body.s9_5
                 
@@ -138,7 +204,7 @@ module.exports = function (app, passport) {
            if(err){ console.log(err)}
            res.render('page/send_form_4.ejs',{
                user: req.user,
-               name_project:req.body.name_project
+               project_ID:req.body.project_ID
            });
        })
         
@@ -149,22 +215,63 @@ module.exports = function (app, passport) {
     
 
     app.post('/SFM005',function(req,res){
-        //console.log(req.body)
-        const filter = {name_project:req.body.name_project};
+        
+        console.log(req.body)
+        var pserson_budget_json = JSON.parse(req.body.Person_List_data);
+        var Compensation_budget_json = JSON.parse(req.body.Compensation_List_data);
+        var Genaral_cost_budget_json = JSON.parse(req.body.Genaral_cost_List_data);
+        var Material_budget_json = JSON.parse(req.body.Material_cost_List_data);
+        var Public_budget_json = JSON.parse(req.body.Public_cost_List_data);
+        var durable_articles_budget_json = JSON.parse(req.body.durable_articles_List_data);
+        var Building_budget_json = JSON.parse(req.body.Building_List_data);
+
+        var pserson_budget_array = []
+        var Compensation_budget_array = []
+        var Genaral_cost_budget_array = []
+        var Material_budget_array = []
+        var Public_budget_array = []
+        var durable_articles_budget_array = []
+        var Building_budget_array = []
+
+          for (var key in pserson_budget_json) {
+            pserson_budget_array.push([key,pserson_budget_json[key]])
+          }
+          for (var key in Compensation_budget_json) {
+            Compensation_budget_array.push([key,Compensation_budget_json[key]])
+          }
+          for (var key in Genaral_cost_budget_json) {
+            Genaral_cost_budget_array.push([key,Genaral_cost_budget_json[key]])
+          }
+          for (var key in Material_budget_json) {
+            Material_budget_array.push([key,Material_budget_json[key]])
+          }
+          for (var key in Public_budget_json) {
+            Public_budget_array.push([key,Public_budget_json[key]])
+          }
+          for (var key in durable_articles_budget_json) {
+            durable_articles_budget_array.push([key,durable_articles_budget_json[key]])
+          }
+          for (var key in Building_budget_json) {
+            Building_budget_array.push([key,Building_budget_json[key]])
+          }
+       
+        
+        const filter = {project_ID:req.body.project_ID};
         const update = {
             project_status:"เสนอโครงการ" ,
             Budget:{ 
+            person:pserson_budget_array,
             operating_budget:
             {
-                Compensation:req.body.Compensation,
-                Living_expenses:req.body.Living_expenses,
-                Material_costMaterial_cost:req.body.Material_costMaterial_cost,
-                Public_utility_cost:req.body.Public_utility_cost
+                Compensation:Compensation_budget_array,
+                Living_expenses:Genaral_cost_budget_array,
+                Material_cost:Material_budget_array,
+                Public_utility_cost:Public_budget_array
             },
             investment_budget:
             {
-                durable_articles:req.body.durable_articles,
-                Structure_cost:req.body.Structure_cost
+                durable_articles:durable_articles_budget_array,
+                Structure_cost:Building_budget_array
             },
             total_budget:req.body.total_budget   
        }};
@@ -176,15 +283,14 @@ module.exports = function (app, passport) {
            infoShema.findOne({name_project:req.body.name_project},function(error, comments){           
                           
             console.log(comments)
-            var creator = require('../models/createDocx');
-            var john = new creator(comments.name_project,comments);
+           
+           
 
             })
 
-
            res.render('page/send_form_5.ejs',{
                user: req.user,
-               name_project:req.body.name_project
+               project_ID:req.body.project_ID
            });
        })
        
@@ -345,27 +451,7 @@ module.exports = function (app, passport) {
     });
 
 
-    app.get('/SFM001', isLoggedIn, function (req, res) {
-        
-        res.render('page/send_form_1.ejs', {
-            user: req.user
-        });
-    });
-    app.get('/SFM002', isLoggedIn, function (req, res) {
-        res.render('page/send_form_2.ejs', {
-            user: req.user
-        });
-    });
-    app.get('/SFM003', isLoggedIn, function (req, res) {
-        res.render('page/send_form_3.ejs', {
-            user: req.user
-        });
-    });
-    app.get('/SFM004', isLoggedIn, function (req, res) {
-        res.render('page/send_form_4.ejs', {
-            user: req.user
-        });
-    });
+   
 
     app.get('/AP001', isLoggedIn, function (req, res) {
         
@@ -374,13 +460,14 @@ module.exports = function (app, passport) {
             res.render('general_page/appoved_project.ejs', { projectInfo:comments, user: req.user });    
             }); 
     });
+    /*
     app.post('/AP002', isLoggedIn, function (req, res) {
         
             console.log(req.body);
             res.render('general_page/step_one.ejs', { project_select:req.body,user: req.user });    
      
     });
-
+    */
     app.post('/AP003', isLoggedIn, function (req, res) {
         
         console.log(req.body)

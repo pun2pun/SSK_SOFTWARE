@@ -38,7 +38,7 @@
   <div class="container">  
     
     <form action="/SFM004" method="POST"> 
-        <input type="hidden" name="name_project" value="<%= name_project %>">
+        <input type="hidden" name="project_ID" value="<%= project_ID %>">
     <div  class="form-inline" style="margin-top: 30px;" >
         <label style="font-size: 18px;background-color: #296DE2;width: 30px;color: #ffff;" > 9 </label>
         <label style="font-size: 18px; margin-left: 10px;">หลักฐานแหล่งพิสูจน์</label>
@@ -64,10 +64,65 @@
     <div>
         <div  class="form-inline" style="margin-top: 10px;margin-left: 50px;" >
             <label style="font-size: 18px;background-color: #296DE2;width: 30px;color: #ffff;" > 9.3 </label>
-            <label style="font-size: 18px; margin-left: 10px;">งบประมาณ (ระบุที่มางบประมาณ เช่น เงินอุดหนุน)</label>
+            <label style="font-size: 18px; margin-left: 10px;">งบประมาณ </label>
         </div>
         <div style="margin-top: 5px;margin-left: 80px;">
-            <textarea class="form-control" style="width: 800px; height: 150px;" name="s9_3" id="s9_3" > </textarea>
+
+            <div class="input-group mb-3" style="width: 500px;">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" style="width: 200px;">เงินอุดหนุนรายหัว</span>
+                </div>
+                <input type="number"  id="budget_1" name="budget_1" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <div class="input-group-append">
+                  <span class="input-group-text">บาท</span>
+                </div>
+            </div>
+            <div class="input-group mb-3" style="width: 500px;">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" style="width: 200px;">เงินรายได้สถาณศึกษา</span>
+                </div>
+                <input type="number" id="budget_2" name="budget_2" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <div class="input-group-append">
+                  <span class="input-group-text">บาท</span>
+                </div>
+            </div>
+            <div class="input-group mb-3" style="width: 500px;">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" style="width: 200px;">เงินงบประมาณ</span>
+                </div>
+                <input type="number" id="budget_3" name="budget_3" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <div class="input-group-append">
+                  <span class="input-group-text">บาท</span>
+                </div>
+            </div>
+            <div class="input-group mb-3" style="width: 500px;">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" style="width: 200px;">เงินรายได้สถาณศึกษา</span>
+                </div>
+                <input type="number" id="budget_4" name="budget_4" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <div class="input-group-append">
+                  <span class="input-group-text">บาท</span>
+                </div>
+            </div>
+            <div class="input-group mb-3" style="width: 500px;">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" style="width: 200px;">เงินกิจกรรมพัฒนาผู้เรียน</span>
+                </div>
+                <input type="number" id="budget_5" name="budget_5" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <div class="input-group-append">
+                  <span class="input-group-text">บาท</span>
+                </div>
+            </div>
+            <div class="input-group mb-3" style="width: 500px;">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" style="width: 200px;">เงินอื่นๆ(ระบุ)</span>
+                </div>
+                <input type="number" id="budget_6" name="budget_6" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <div class="input-group-append">
+                  <span class="input-group-text">บาท</span>
+                </div>
+            </div>
+
         </div>
     </div>
     <div>

@@ -2,10 +2,12 @@
 var mongoose = require('mongoose');
 
 var infoSchemas = mongoose.Schema({
-
+    project_ID:String,
     name_project: String,
     project_status:String,
     name_creator:String,
+    department:String,
+    Budget_type:String,
     data:{
        
         
@@ -59,24 +61,25 @@ var infoSchemas = mongoose.Schema({
         {
             Assessment_method:String,
             tools:String,
-            Budget:String,
+            Budget:[String],
             Processing_time:{ Start:String , End:String},
             Responsible_person:String
             
         }},
         Budget:
-        {
+        {   
+            person:[[String,String]],
             operating_budget:
             {
-                Compensation:String,
-                Living_expenses:String,
-                Material_cost:String,
-                Public_utility_cost:String
+                Compensation:[[String,String]],
+                Living_expenses:[[String,String]],
+                Material_cost:[[String,String]],
+                Public_utility_cost:[[String,String]]
             },
             investment_budget:
             {
-                durable_articles:String,
-                Structure_cost:String
+                durable_articles:[[String,String]],
+                Structure_cost:[[String,String]]
             },
             total_budget:String
 

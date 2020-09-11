@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet"> 
 </head>
 
-<body style="font-family: 'Kanit', sans-serif;">
+<body style="font-family: 'Kanit', sans-serif;" onload="myFunction()">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
@@ -43,30 +43,34 @@
   <div class="container">           
     
     <form action="/SFM002" method="post">
-      <input type="hidden" name="user_name" value="<%= user.local.name %>">
+      <input type="hidden" name="project_ID" value="<%= project_ID %>">
+      <input type="hidden" name="budget_type" value="<%= budget_type %>">
+
         <div style="margin-left: 250px; margin-top: 100px;" class="form-inline" >
             <label style="font-size: 18px;">รายละเอียดโครงการ/กิจกรรม ปีงบประมาณ </label>
-            <input style="width: 100px;margin-left: 5px;" id="year_project" name="year_project" type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+            <input style="width: 100px;margin-left: 5px;" id="year_project" name="year_project" type="text" class="form-control"  aria-label="Username"  aria-describedby="basic-addon1">
         </div> 
         <p style="text-align: center;font-size: 18px;">โรงเรียนสตรีสิริเกศ</p>
-        <p style="text-align: center;font-size: 18px;">(งานพัฒนาตามกลยุทธ์)</p>
+        <p style="text-align: center;font-size: 18px;"><%= "( "+ budget_type +" )" %></p>
        
         <div  class="form-inline" style="margin-top: 30px;" >
           <label style="font-size: 18px;">1.ความสอดคล้อง</label>
          </div>
         <div>
         
+          <% if( budget_type == "งานพัฒนาตามกลยุทธ์" ){ %>
+
          <div class="input-group mb-3" style="margin-top: 20px;">
           <div class="input-group-prepend">
             <button class="btn btn-outline-secondary" type="button">ยุทธศาสตร์ประเทศ </button>
           </div>
           <select class="custom-select" id="country_strategy" name="country_strategy">
             <option selected> - </option>
-            <option value="1">ยุทธศาสตร์ที่ 1 : การเพิ่มขีดความสามารถในการแข่งขันของประเทศปานกลาง (Growth & Competitiveness)</option>
-            <option value="2">ยุทธศาสตร์ที่ 2 : การลดความเหลื่อมล้ำ (Inclusive Growth)</option>
-            <option value="3">ยุทธศาสตร์ที่ 3 : การเติบโตที่เป็นมิตรต่อสิ่งแวดล้อม (Green Growth)</option>
-            <option value="4">ยุทธศาสตร์ที่ 4 : การสร้างความสมดุลและปรับระบบบริหารจัดการภาครัฐ (Internal Process)</option>
+            <% for(var plan_index_1 = 0; plan_index_1 < plan_info.contry_statigy.length ; plan_index_1++){ %> 
+              <option value="<%= plan_info.contry_statigy[plan_index_1] %>"> <%= "ที่ "+(plan_index_1+1).toString()+" "+plan_info.contry_statigy[plan_index_1] %> </option>
+            <%  }%>
           </select>
+          
         </div>
 
         <div class="input-group mb-3">
@@ -75,10 +79,9 @@
           </div>
           <select class="custom-select" id="spt_strategy" name="spt_strategy"">
             <option selected> - </option>
-            <option value="1">ยุทธศาสตร์ที่ 1 : การพัฒนาคุณภาพผู้เรียนในระดับการศึกษาขั้นพื้นฐาน</option>
-            <option value="2">ยุทธศาสตร์ที่ 2 : การเพิ่มโอกาสให้ผู้เรียนเข้าถึงบริการการศึกษาขั้นพื้นฐาน</option>
-            <option value="3">ยุทธศาสตร์ที่ 3 : การพัฒนาคุณภาพครูและบุคลากรทางการศึกษา</option>
-            <option value="4">ยุทธศาสตร์ที่ 4 : การพัฒนาระบบการบริหารจัดการ</option>
+            <% for(var plan_index_2 = 0; plan_index_2 < plan_info.spt_statigy.length ; plan_index_2++){ %> 
+              <option value="<%= plan_info.spt_statigy[plan_index_2] %>"> <%= "ที่ "+(plan_index_2+1).toString()+" "+plan_info.spt_statigy[plan_index_2] %> </option>
+            <%  }%>
           </select>
         </div>
         </div>
@@ -90,9 +93,9 @@
           </div>
           <select class="custom-select" id="school_standard" name="school_standard">
             <option selected> - </option>
-            <option value="1">มาตรฐานที่ 1 : คุณภาพของผู้เรียน</option>
-            <option value="2">มาตรฐานที่ 2 : กระบวนการบริหารและการจัดการ</option>
-            <option value="3">มาตรฐานที่ 3 : กระบวนการจัดการเรียนการสอนที่เน้นผู้เรียนเป็นสำคัญ </option>
+            <% for(var plan_index_3 = 0; plan_index_3 < plan_info.shool_standard.length ; plan_index_3++){ %> 
+              <option value="<%= plan_info.shool_standard[plan_index_3] %>"> <%= "ที่ "+(plan_index_3+1).toString()+" "+plan_info.shool_standard[plan_index_3] %> </option>
+            <%  }%>
           </select>
         </div>
 
@@ -102,16 +105,16 @@
           </div>
           <select class="custom-select" id="indicator" name="indicator">
             <option selected> - </option>
-            <% for(q = 1; q < 31 ; q++){ %> 
-              <option value="<%= q %>"> <%= q %> </option>
+            <% for(var plan_index_4 = 0; plan_index_4 < plan_info.indicator.length ; plan_index_4++){ %> 
+              <option value="<%= plan_info.indicator[plan_index_4] %>"> <%= "ที่ "+(plan_index_4+1).toString()+" "+plan_info.indicator[plan_index_4] %> </option>
             <%  }%>
           </select>
 
         <button class="btn btn-outline-secondary" style="margin-left: 20px;" type="button">ตัวชี้วัดที่</button>        
         <select class="custom-select" id="Metric" name="Metric" >
           <option selected> - </option>
-          <% for(s = 1; s < 48 ; s++){ %> 
-            <option value="<%= s %>"> <%= s %> </option>
+          <% for(var plan_index_5 = 0; plan_index_5 < plan_info.target.length ; plan_index_5++){ %> 
+            <option value="<%= plan_info.target[plan_index_5] %>"> <%= "ที่ "+(plan_index_5+1).toString()+" "+plan_info.target[plan_index_5] %> </option>
           <%  }%>
         </select>
 
@@ -128,11 +131,9 @@
           </div>
           <select class="custom-select" id="School_strategy" name="School_strategy">
             <option selected> - </option>
-            <option value="1">กลยุทธ์ที่ 1 : พัฒนาผู้เรียนให้เป็นพลโลกแห่งศตวรรษที่ 21</option>
-            <option value="2">กลยุทธ์ที่ 2 : พัฒนาศักยภาพและจรรยาบรรณวิชาชีพคร</option>
-            <option value="3">กลยุทธ์ที่ 3 : ส่งเสริมและพัฒนาหลักสูตรสถานศึกษาตามกลุ่มศักยภาพผู้เรียน</option>
-            <option value="4">กลยุทธ์ที่ 4 : พัฒนาศักยภาพระบบการกำกับและสะท้อนผลมาตรฐานคุณภาพการบริหารจัดการ</option>
-            <option value="5">กลยุทธ์ที่ 5 : ส่งเสริมพัฒนาภาคีเครือข่ายความร่วมมือการพัฒนากิจกรรมการเรียนรู้ตามศาสตร์พระราชา</option>
+            <% for(var plan_index_6 = 0; plan_index_6 < plan_info.school__statigy.length ; plan_index_6++){ %> 
+              <option value="<%= plan_info.school__statigy[plan_index_6] %>"> <%= "ที่ "+(plan_index_6+1).toString()+" "+plan_info.school__statigy[plan_index_6] %> </option>
+            <%  }%>
           </select>
         </div>
 
@@ -142,55 +143,57 @@
           </div>
           <select class="custom-select" id="Main_project" name="Main_project">
             <option selected> - </option>
-          <% for(p = 1; p < 11 ; p++){ %> 
-            <option value="<%= p %>"> <%= p %> </option>
-          <%  }%> 
-            
-            
-          </select>
-
-        <button class="btn btn-outline-secondary" style="margin-left: 20px;" type="button">กิจกรรมหลักที่</button>        
-        <select class="custom-select" id="Main_activities" name="Main_activities" >
-          <option selected> - </option>
-          <option selected> - </option>
-          <% for(a = 1; a < 14 ; a++){ %> 
-            <option value="<%= a %>"> <%= a %> </option>
-          <%  }%>
-        </select>
+            <% for(var plan_index_7 = 0; plan_index_7 < plan_info.main_project_school.length ; plan_index_7++){ %> 
+              <option value="<%= plan_info.main_project_school[plan_index_7] %>"> <%= "ที่ "+(plan_index_7+1).toString()+" "+plan_info.main_project_school[plan_index_7] %> </option>
+            <%  }%>
+          </select>      
 
         </div>
+        <div class="input-group mb-3"  style="width: 800px;">
 
+          <button class="btn btn-outline-secondary" type="button">กิจกรรมหลักที่</button>        
+          <select class="custom-select" id="Main_activities" name="Main_activities" >
+            <option selected> - </option>
+            <option selected> - </option>
+            <% for(var plan_index_8 = 0; plan_index_8 < plan_info.main_activities.length ; plan_index_8++){ %> 
+              <option value="<%= plan_info.main_activities[plan_index_8] %>"> <%= "ที่ "+(plan_index_8+1).toString()+" "+plan_info.main_activities[plan_index_8] %> </option>
+            <%  }%>
+          </select>
+
+        <% } %>
+        </div>
+      
          <!----------------------------------------------------------------------------- -->
       
 
         <div style="margin-top: 100px;" class="form-inline" >
             <label style="font-size: 18px;">2.ลักษณะของโครงการ</label>
             <div class="form-check"  style="margin-left: 30px;">
-                <input class="form-check-input" type="radio" name="property_project" id="property_project" value="old" checked>
+                <input class="form-check-input" type="radio" name="property_project" id="property_project" value="เก่า" checked>
                 <label class="form-check-label" for="exampleRadios1">
                  เก่า
                 </label>
               </div>
               <div class="form-check"  style="margin-left: 20px;">
-                <input class="form-check-input" type="radio" name="property_project" id="property_project" value="new">
+                <input class="form-check-input" type="radio" name="property_project" id="property_project" value="ใหม่">
                 <label class="form-check-label" for="exampleRadios2">
                   ใหม่
                 </label>
               </div>
               <div class="form-check"  style="margin-left: 20px;">
-                <input class="form-check-input" type="radio" name="property_project" id="property_project" value="continue">
+                <input class="form-check-input" type="radio" name="property_project" id="property_project" value="ต่อเนื่อง">
                 <label class="form-check-label" for="exampleRadios3">
                   ต่อเนื่อง
                 </label>
             </div> 
             <div class="form-check"  style="margin-left: 20px;">
-              <input class="form-check-input" type="radio" name="property_project" id="property_project" value="academic">
+              <input class="form-check-input" type="radio" name="property_project" id="property_project" value="งบด้านวิชาการ">
               <label class="form-check-label" for="exampleRadios4">
                 งบด้านวิชาการ
               </label>
           </div>
           <div class="form-check"  style="margin-left: 20px;">
-            <input class="form-check-input" type="radio" name="property_project" id="property_project" value="gernaral">
+            <input class="form-check-input" type="radio" name="property_project" id="property_project" value="งบบริหารทั่วไป">
             <label class="form-check-label" for="exampleRadios5">
               งบบริหารทั่วไป
             </label>
@@ -212,7 +215,7 @@
 
 
 <div style="margin-top: 20px;"><center>
-  <i class="fa fa-user" ></i> <button type="submit" value="submited" class="btn btn-success" data-toggle="modal" data-target="#myModal">Save</button>
+ <button type="submit" value="submited" class="btn btn-success" data-toggle="modal" data-target="#myModal">Save</button>
  <button type="button" class="btn btn-danger">Canle</button>
 </div></center>
 </form>
@@ -244,6 +247,15 @@
 
   </div>
 </div>
+
+
+<script>
+  function myFunction() {
+    var d = new Date();
+    var n = d.getFullYear() + 543;
+    document.getElementById("year_project").value = n;
+  }
+  </script>
 
 
 
