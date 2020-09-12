@@ -68,18 +68,18 @@ var infoSchemas = mongoose.Schema({
         }},
         Budget:
         {   
-            person:[[String,String]],
+            person:[[String,String,String,String,String]],
             operating_budget:
             {
-                Compensation:[[String,String]],
-                Living_expenses:[[String,String]],
-                Material_cost:[[String,String]],
-                Public_utility_cost:[[String,String]]
+                Compensation:[[String,String,String,String,String]],
+                Living_expenses:[[String,String,String,String,String]],
+                Material_cost:[[String,String,String,String,String]],
+                Public_utility_cost:[[String,String,String,String,String]]
             },
             investment_budget:
             {
-                durable_articles:[[String,String]],
-                Structure_cost:[[String,String]]
+                durable_articles:[[String,String,String,String,String]],
+                Structure_cost:[[String,String,String,String,String]]
             },
             total_budget:String
 

@@ -46,15 +46,34 @@
 <% var st4_list = ["กลยุทธ์ที่ 1 : พัฒนาผู้เรียนให้เป็นพลโลกแห่งศตวรรษที่ 21","กลยุทธ์ที่ 2 : พัฒนาศักยภาพและจรรยาบรรณวิชาชีพคร","กลยุทธ์ที่ 3 : ส่งเสริมและพัฒนาหลักสูตรสถานศึกษาตามกลุ่มศักยภาพผู้เรียน","กลยุทธ์ที่ 4 : พัฒนาศักยภาพระบบการกำกับและสะท้อนผลมาตรฐานคุณภาพการบริหารจัดการ","กลยุทธ์ที่ 5 : ส่งเสริมพัฒนาภาคีเครือข่ายความร่วมมือการพัฒนากิจกรรมการเรียนรู้ตามศาสตร์พระราชา"] %>
 
 <center><img src="image/title-01.jpg" width="1000" height="150"></center>
-  <div class="container" style="width: 1000px;margin-top: 50px; margin-bottom: 50px; border: 1px solid #a8a6a6;font-size: 17px;">
+  <div class="container" style="width: 1000px;margin-top: 50px; margin-bottom: 50px; border: 1px solid #a8a6a6;font-size: 17px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
     
     <p class="text-center" style="font-size: 20px;margin-top: 50px;"> รายละเอียดโครงการ/กิจกรรม ปีงบประมาณ 2564 </p>
     <p class="text-center" style="font-size: 20px;">โรงเรียนสตรีสิริเกศ</p>
     <p class="text-center" style="font-size: 20px;">(<%=projectInfo.Budget_type %>)</p>
     <p class="text-center" style="font-size: 20px;">………………………………………………………………</p>
     
+    <% if(projectInfo.Budget_type == "งานพัฒนาตามกลยุทธ์"){ %>
+    <p class="text-left" style="font-size: 18px;font-weight: bolder;margin-top: 50px;">ความสอดคล้อง</p>
+    <div class="row" ">
+      <div class="col"><p class="text-center" style="font-size: 16x;"><%= "ยุทธศาสตร์ประเทศ ยุทธศาสตร์ที่ "+((strategy_index_list[0]*1)+1) %></p></div>
+      <div class="col"><p class="text-center" style="font-size: 16x;"><%= "ยุทธศาสตร์ สพฐ.ยุทธศาสตร์ที่ "+((strategy_index_list[1]*1)+1) %></p></div>
+    </div>
+   
+    <div class="row" style="margin-top: 10px;">
+      <div class="col"><p class="text-center" style="font-size: 16x;"><%= "มาตรฐานการศึกษาโรงเรียน มาตรฐานที่	 "+((strategy_index_list[2]*1)+1) %></p></div>
+      <div class="col"><p class="text-center" style="font-size: 16x;"><%= "ตัวบ่งชี้ที่ "+((strategy_index_list[3]*1)+1) +" ตัวชี้วัดที่ "+((strategy_index_list[4]*1)+1) %></p></div>
+    </div>
+
+    <div class="row" style="margin-top: 10px;">
+      <div class="col"><p class="text-center" style="font-size: 16x;"><%= "กลยุทธ์ของโรงเรียน  กลยุทธ์ที่	 "+((strategy_index_list[5]*1)+1) %></p></div>
+      <div class="col"><p class="text-center" style="font-size: 16x;"><%= "โครงการหลักที่ "+((strategy_index_list[6]*1)+1) +" กิจกรรมหลักที่ "+((strategy_index_list[7]*1)+1) %></p></div>
+    </div>
+
+    <% }%>
+
     
-    <p class="text-left" style="font-size: 18px;"><%= "1. ลักษณะของโครงการ : " +projectInfo.data.property_project %></p>
+    <p class="text-left" style="font-size: 18px;margin-top: 50px;"><%= "1. ลักษณะของโครงการ : " +projectInfo.data.property_project %></p>
     <p class="text-left" style="font-size: 18px;"><%= "2. โครงการ / กิจกรรม : " +projectInfo.name_project %></p>
 
     <table class="table table-bordered" style="margin-top: 50px;">
@@ -68,7 +87,7 @@
       <tbody>
         <tr>
           <td scope="row"><p style="font-weight: bold;">จุดมุ่งหมาย (Goal)</p><%= projectInfo.data_detail.goal.body %></td>
-          <td><%= projectInfo.data_detail.goal.Success_Indicators %></td>
+          <td style="font-weight: lighter;"><%= projectInfo.data_detail.goal.Success_Indicators %></td>
           <td><%= projectInfo.data_detail.goal.Success_conditions %></td>
         </tr>
 
@@ -99,7 +118,7 @@
       </tbody>
     </table>
 
-    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">หลักฐานแหล่งพิสูจน์</p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 50px;">หลักฐานแหล่งพิสูจน์</p>
     <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><%= projectInfo.data_detail_2.Proof_of_evidence.Assessment_method %></p>
     <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">วิธีการประเมิน</p>
     <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">เครื่องมือ</p>
@@ -164,25 +183,27 @@
      <div class="d-flex justify-content-center" style="margin-top: 70px;">
       <p class="text-break">ลงชื่อ ..............................................ผู้อนุมัติโครงการ</p>
      </div>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center" style="margin-bottom:100px ;">
     <p class="text-break">(ผู้อำนวยการโรงเรียน)</p>
       </div>
 </div>
 
 
-<div class="container" style="width: 1000px;margin-top: 50px; margin-bottom: 50px; border: 1px solid #a8a6a6;font-size: 17px;">
-  <p class="text-center" style="font-size: 20px;margin-top: 50px;"> ทรัพยากรโครงการ/กิจกรรม <%= projectInfo.name_project %> ปีงบประมาณ 2564 </p>
+<div class="container" style="width: 1000px;margin-top: 50px; margin-bottom: 50px; border: 1px solid #a8a6a6;font-size: 17px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+  <p class="text-center" style="font-size: 20px;margin-top: 50px;"> ทรัพยากรโครงการ/กิจกรรม  </p>
+  <p class="text-center" style="font-size: 20px;font-weight: bold;"> <%= projectInfo.name_project %> </p>
+  <p class="text-center" style="font-size: 20px;"> ปีงบประมาณ 2564 </p>
 
 
   <table class="table table-bordered" style="margin-top: 50px;">
     <thead>
       <tr style="vertical-align: middle;" >
-        <th scope="col">ที่ </th>
-        <th scope="col">รายการ</th>
-        <th scope="col">ราคา</th>
-        <th scope="col">หน่วยนับ</th>
-        <th scope="col">ภาคเรียนที่ 2/2563</th>
-        <th scope="col">ภาคเรียนที่ 1/2564</th>
+        <th scope="col" style="text-align: center;"> ที่ </th>
+        <th scope="col" style="text-align: center;">รายการ</th>
+        <th scope="col" style="text-align: center;">ราคา</th>
+        <th scope="col" style="width: 80px;text-align: center;">หน่วยนับ</th>
+        <th scope="col" style="text-align: center;">จำนวน</th>
+        <th scope="col" style="text-align: center;">รวมทั้งสิ้น</th>
       </tr>
     </thead>
     <tbody>
@@ -200,10 +221,10 @@
         <tr>
         <th > </th>
         <th  style="font-weight: lighter;"><%= projectInfo.Budget.person[i][0] %></th>
-        <th ></th>
-        <th ></th>
-        <th style="font-weight: lighter;"><%= projectInfo.Budget.person[i][1] %></th>
-        <th > </th>
+        <th style="font-weight: lighter;"> <%= projectInfo.Budget.person[i][1] %></th>
+        <th style="font-weight: lighter;"> <%= projectInfo.Budget.person[i][3] %> </th>
+        <th style="font-weight: lighter"><%= projectInfo.Budget.person[i][2] %></th>
+        <th style="font-weight: lighter;"> <%= (projectInfo.Budget.person[i][1]*1)*(projectInfo.Budget.person[i][2]*1) %> </th>      
       </tr>
         <% }%>
         <tr>
@@ -216,79 +237,79 @@
         </tr> 
         <tr>
           <th scope="row"> </th>
-          <th  style="font-weight: bold;">-ค่าตอบแทน </th>
+          <th  style="font-weight: bold;">- ค่าตอบแทน </th>
           <th scope="row"></th>
           <th scope="row"></th>
           <th scope="row"> </th>
           <th scope="row"> </th>
         </tr>
         
-        <% for(var j = 0;j< projectInfo.Budget.operating_budget.Compensation.length;j++){ %>
+        <% for(var i = 0;i< projectInfo.Budget.operating_budget.Compensation.length;i++){ %>
           <tr>
           <th > </th>
-          <th  style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Compensation[j][0] %></th>
-          <th ></th>
-          <th ></th>
-          <th style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Compensation[j][1] %></th>
-          <th > </th>
+          <th  style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Compensation[i][0] %></th>
+          <th style="font-weight: lighter;"> <%= projectInfo.Budget.operating_budget.Compensation[i][1] %></th>
+          <th style="font-weight: lighter;"> <%= projectInfo.Budget.operating_budget.Compensation[i][3] %> </th>
+          <th style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Compensation[i][2] %></th>
+          <th style="font-weight: lighter;"> <%= (projectInfo.Budget.operating_budget.Compensation[i][1]*1)*(projectInfo.Budget.operating_budget.Compensation[i][2]*1) %> </th>      
         </tr>
           <% }%>
 
           <tr>
             <th scope="row"> </th>
-            <th  style="font-weight: bold;">-ค่าใช้สอย </th>
+            <th  style="font-weight: bold;">- ค่าใช้สอย </th>
             <th scope="row"></th>
             <th scope="row"></th>
             <th scope="row"> </th>
             <th scope="row"> </th>
           </tr>
 
-          <% for(var j = 0;j< projectInfo.Budget.operating_budget.Living_expenses.length;j++){ %>
+          <% for(var i = 0;i< projectInfo.Budget.operating_budget.Living_expenses.length;i++){ %>
             <tr>
             <th > </th>
-            <th  style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Living_expenses[j][0] %></th>
-            <th ></th>
-            <th ></th>
-            <th style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Living_expenses[j][1] %></th>
-            <th > </th>
+            <th  style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Living_expenses[i][0] %></th>
+            <th style="font-weight: lighter;"> <%= projectInfo.Budget.operating_budget.Living_expenses[i][1] %></th>
+            <th style="font-weight: lighter;"> <%= projectInfo.Budget.operating_budget.Living_expenses[i][3] %> </th>
+            <th style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Living_expenses[i][2] %></th>
+            <th style="font-weight: lighter;"> <%= (projectInfo.Budget.operating_budget.Living_expenses[i][1]*1)*(projectInfo.Budget.operating_budget.Living_expenses[i][2]*1) %> </th>      
           </tr>
             <% }%>
             <tr>
               <th scope="row"> </th>
-              <th  style="font-weight: bold;">-ค่าวัสดุ </th>
+              <th  style="font-weight: bold;">- ค่าวัสดุ </th>
               <th scope="row"></th>
               <th scope="row"></th>
               <th scope="row"> </th>
               <th scope="row"> </th>
             </tr>
 
-            <% for(var j = 0;j< projectInfo.Budget.operating_budget.Material_cost.length;j++){ %>
+            <% for(var i = 0;i< projectInfo.Budget.operating_budget.Material_cost.length;i++){ %>
               <tr>
               <th > </th>
-              <th  style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Material_cost[j][0] %></th>
-              <th ></th>
-              <th ></th>
-              <th style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Material_cost[j][1] %></th>
-              <th > </th>
+              <th  style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Material_cost[i][0] %></th>
+              <th style="font-weight: lighter;"> <%= projectInfo.Budget.operating_budget.Material_cost[i][1] %></th>
+              <th style="font-weight: lighter;"> <%= projectInfo.Budget.operating_budget.Material_cost[i][3] %> </th>
+              <th style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Material_cost[i][2] %></th>
+              <th style="font-weight: lighter;"> <%= (projectInfo.Budget.operating_budget.Material_cost[i][1]*1)*(projectInfo.Budget.operating_budget.Material_cost[i][2]*1) %> </th>      
             </tr>
               <% }%>
 
               <tr>
                 <th scope="row"> </th>
-                <th  style="font-weight: bold;">-ค่าสาธารณู </th>
+                <th  style="font-weight: bold;">- ค่าสาธารณู </th>
                 <th scope="row"></th>
                 <th scope="row"></th>
                 <th scope="row"> </th>
                 <th scope="row"> </th>
               </tr>
-              <% for(var j = 0;j< projectInfo.Budget.operating_budget.Public_utility_cost.length;j++){ %>
+              <% for(var i = 0;i< projectInfo.Budget.operating_budget.Public_utility_cost.length;i++){ %>
                 <tr>
                 <th > </th>
-                <th  style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Public_utility_cost[j][0] %></th>
-                <th ></th>
-                <th ></th>
-                <th style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Public_utility_cost[j][1] %></th>
-                <th > </th>
+                <th  style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Public_utility_cost[i][0] %></th>
+                <th style="font-weight: lighter;"> <%= projectInfo.Budget.operating_budget.Public_utility_cost[i][1] %></th>
+                <th style="font-weight: lighter;"> <%= projectInfo.Budget.operating_budget.Public_utility_cost[i][3] %> </th>
+                <th style="font-weight: lighter;"><%= projectInfo.Budget.operating_budget.Public_utility_cost[i][2] %></th>
+                <th style="font-weight: lighter;"> <%= (projectInfo.Budget.operating_budget.Public_utility_cost[i][1]*1)*(projectInfo.Budget.operating_budget.Public_utility_cost[i][2]*1) %> </th>      
               </tr>
                 <% }%>
                 <tr>
@@ -301,38 +322,38 @@
                 </tr> 
                 <tr>
                   <th scope="row"> </th>
-                  <th  style="font-weight: bold;">-ครุภัณฑ์ </th>
+                  <th  style="font-weight: bold;">- ครุภัณฑ์ </th>
                   <th scope="row"></th>
                   <th scope="row"></th>
                   <th scope="row"> </th>
                   <th scope="row"> </th>
                 </tr>
-                <% for(var j = 0;j< projectInfo.Budget.investment_budget.durable_articles.length;j++){ %>
+                <% for(var i = 0;i< projectInfo.Budget.investment_budget.durable_articles.length;i++){ %>
                   <tr>
                   <th > </th>
-                  <th  style="font-weight: lighter;"><%= projectInfo.Budget.investment_budget.durable_articles[j][0] %></th>
-                  <th ></th>
-                  <th ></th>
-                  <th style="font-weight: lighter;"><%= projectInfo.Budget.investment_budget.durable_articles[j][1] %></th>
-                  <th > </th>
+                  <th  style="font-weight: lighter;"><%= projectInfo.Budget.investment_budget.durable_articles[i][0] %></th>
+                  <th style="font-weight: lighter;"> <%= projectInfo.Budget.investment_budget.durable_articles[i][1] %></th>
+                  <th style="font-weight: lighter;"> <%= projectInfo.Budget.investment_budget.durable_articles[i][3] %> </th>
+                  <th style="font-weight: lighter;"><%= projectInfo.Budget.investment_budget.durable_articles[i][2] %></th>
+                  <th style="font-weight: lighter;"> <%= (projectInfo.Budget.investment_budget.durable_articles[i][1]*1)*(projectInfo.Budget.investment_budget.durable_articles[i][2]*1) %> </th>      
                 </tr>
                   <% }%>
                   <tr>
                     <th scope="row"> </th>
-                    <th  style="font-weight: bold;">-สิ่งก่อสร้าง </th>
+                    <th  style="font-weight: bold;">- สิ่งก่อสร้าง </th>
                     <th scope="row"></th>
                     <th scope="row"></th>
                     <th scope="row"> </th>
                     <th scope="row"> </th>
                   </tr>
-                  <% for(var j = 0;j< projectInfo.Budget.investment_budget.Structure_cost.length;j++){ %>
+                  <% for(var i = 0;i< projectInfo.Budget.investment_budget.Structure_cost.length;i++){ %>
                     <tr>
                     <th > </th>
-                    <th  style="font-weight: lighter;"><%= projectInfo.Budget.investment_budget.Structure_cost[j][0] %></th>
-                    <th ></th>
-                    <th ></th>
-                    <th style="font-weight: lighter;"><%= projectInfo.Budget.investment_budget.Structure_cost[j][1] %></th>
-                    <th > </th>
+                    <th  style="font-weight: lighter;"><%= projectInfo.Budget.investment_budget.Structure_cost[i][0] %></th>
+                    <th style="font-weight: lighter;"> <%= projectInfo.Budget.investment_budget.Structure_cost[i][1] %></th>
+                    <th style="font-weight: lighter;"> <%= projectInfo.Budget.investment_budget.Structure_cost[i][3] %> </th>
+                    <th style="font-weight: lighter;"><%= projectInfo.Budget.investment_budget.Structure_cost[i][2] %></th>
+                    <th style="font-weight: lighter;"> <%= (projectInfo.Budget.investment_budget.Structure_cost[i][1]*1)*(projectInfo.Budget.investment_budget.Structure_cost[i][2]*1) %> </th>      
                   </tr>
                     <% }%>
      
@@ -341,7 +362,7 @@
   </table>
 
 
-
+<div style="margin-bottom:100px ;"></div>
 
 </div>
 

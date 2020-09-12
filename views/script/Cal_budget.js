@@ -54,18 +54,19 @@ function add_person_budget(){
     
     var person_budget_name = document.getElementById("person_budget_name").value;
     var person_budget_value = document.getElementById("person_budget_value").value;
-    var t = document.createTextNode(person_budget_name+" "+(person_budget_value*1).toLocaleString('en') +" บาท");
-    
-    
-    
+    var person_budget_name_unit = document.getElementById("person_budget_unit").value;
+    var person_budget_name_qt = document.getElementById("person_budget_qt").value;
+    var person_budget_time = document.getElementById("person_time").value;
+
+    var t = document.createTextNode(person_budget_time+" - "+person_budget_name+"(หน่วยละ "+(person_budget_value*1).toLocaleString('en')+" บาท)"+" จำนวน "+(person_budget_name_qt*1).toString()+" "+person_budget_name_unit+" รวมทั้งสิ้น "+(person_budget_value*1*(person_budget_name_qt*1)).toLocaleString('en') +" บาท");
     
     li.appendChild(t);
     all_person_budget = all_person_budget + person_budget_value*1;
     if (person_budget_value === '') {
         alert("กรุณาใส่รายละเอียด !");
     } else {
-        Total_budget = Total_budget + person_budget_value*1;
-        person_budget_info[person_budget_name+"_"+person_budget_value] = person_budget_value*1;
+        Total_budget = Total_budget + ((person_budget_value*1)*(person_budget_name_qt*1));
+        person_budget_info[person_budget_name+"_"+person_budget_value] = [person_budget_value*1,person_budget_name_qt*1,person_budget_name_unit,person_budget_time];
         document.getElementById("Person_List").appendChild(li);    
     }
     document.getElementById("person_budget_name").value = "";
@@ -114,9 +115,13 @@ function add_Compensation_budget(){
   
   var Compensation_name = document.getElementById("Compensation_name").value;
   var Compensation_value = document.getElementById("Compensation_value").value;
-  var t = document.createTextNode(Compensation_name+" "+(Compensation_value*1).toLocaleString('en') +" บาท");
+  var Compensation_name_unit = document.getElementById("Compensation_name_unit").value;
+  var Compensation_name_qt = document.getElementById("Compensation_name_qt").value;
+  var Compensation_time = document.getElementById("Compensation_time").value;
+
   
-  
+  var t = document.createTextNode(Compensation_time+" - "+Compensation_name+"(หน่วยละ "+(Compensation_value*1).toLocaleString('en')+" บาท)"+"จำนวน "+(Compensation_name_qt*1).toString()+" "+Compensation_name_unit+" รวมทั้งสิ้น "+(Compensation_value*1*(Compensation_name_qt*1)).toLocaleString('en') +" บาท");
+    
   
   
   li.appendChild(t);
@@ -125,8 +130,8 @@ function add_Compensation_budget(){
   if (Compensation_value === '') {
       alert("กรุณาใส่รายละเอียด !");
   } else {
-      Total_budget = Total_budget + Compensation_value*1;
-      Compensation_budget_info[Compensation_name+"_"+Compensation_value] = Compensation_value*1;
+      Total_budget = Total_budget + ((Compensation_value*1)*(Compensation_name_qt*1));
+      Compensation_budget_info[Compensation_name+"_"+Compensation_value] = [Compensation_value*1,Compensation_name_qt*1,Compensation_name_unit,Compensation_time];
       document.getElementById("Compensation_List").appendChild(li);    
   }
   document.getElementById("Compensation_name").value = "";
@@ -169,19 +174,25 @@ function addBudget_2(div){
 function add_Genaral_cost_budget(){
   var li = document.createElement("li");
   
-  var Genaral_cost_budget_name = document.getElementById("Genaral_cost_budget_name").value;
-  var Genaral_cost_budget_value = document.getElementById("Genaral_cost_budget_value").value;
-  var t = document.createTextNode(Genaral_cost_budget_name+" "+(Genaral_cost_budget_value*1).toLocaleString('en') +" บาท");
+  var Genaral_cost_name = document.getElementById("Genaral_cost_budget_name").value;
+  var Genaral_cost_value = document.getElementById("Genaral_cost_budget_value").value;
+  var Genaral_cost_name_unit = document.getElementById("Genaral_cost_name_unit").value;
+  var Genaral_cost_name_qt = document.getElementById("Genaral_cost_name_qt").value;
+  var Genaral_cost_time = document.getElementById("Genaral_cost_time").value;
+
   
-  Total_budget = Total_budget + Genaral_cost_budget_value*1;
+  var t = document.createTextNode(Genaral_cost_time+" - "+Genaral_cost_name+"(หน่วยละ "+(Genaral_cost_value*1).toLocaleString('en')+" บาท)"+"จำนวน "+(Genaral_cost_name_qt*1).toString()+" "+Genaral_cost_name_unit+" รวมทั้งสิ้น "+(Genaral_cost_value*1*(Genaral_cost_name_qt*1)).toLocaleString('en') +" บาท");
+    
+  Total_budget = Total_budget + ((Genaral_cost_value*1)*(Genaral_cost_name_qt*1));
   document.getElementById("total_budget").value = (Total_budget*1).toLocaleString('en');
   
   li.appendChild(t);
   
-  if (Genaral_cost_budget_value === '') {
+  if (Genaral_cost_value === '') {
       alert("กรุณาใส่รายละเอียด !");
   } else {
-      Genaral_cost_budget_info[Genaral_cost_budget_name+"_"+Genaral_cost_budget_value] = Genaral_cost_budget_value*1;
+    
+    Genaral_cost_budget_info[Genaral_cost_name+"_"+Genaral_cost_value] = [Genaral_cost_value*1,Genaral_cost_name_qt*1,Genaral_cost_name_unit,Genaral_cost_time];
       document.getElementById("Genaral_cost_List").appendChild(li);    
   }
   document.getElementById("Genaral_cost_budget_name").value = "";
@@ -222,19 +233,25 @@ function addBudget_3(div){
 function add_Material_cost_budget(){
   var li = document.createElement("li");
   
-  var Material_cost_budget_name = document.getElementById("Material_cost_budget_name").value;
-  var Material_cost_budget_value = document.getElementById("Material_cost_budget_value").value;
-  var t = document.createTextNode(Material_cost_budget_name+" "+(Material_cost_budget_value*1).toLocaleString('en') +" บาท");
+  var Material_cost_name = document.getElementById("Material_cost_budget_name").value;
+  var Material_cost_value = document.getElementById("Material_cost_budget_value").value;
+  var  Material_cost_name_unit = document.getElementById("Material_cost_name_unit").value;
+  var  Material_cost_name_qt = document.getElementById("Material_cost_name_qt").value;
+  var Material_cost_time = document.getElementById("Material_cost_time").value;
+
   
-  Total_budget = Total_budget + Material_cost_budget_value*1;
+  var t = document.createTextNode(Material_cost_time+" - "+ Material_cost_name+"(หน่วยละ "+( Material_cost_value*1).toLocaleString('en')+" บาท)"+"จำนวน "+( Material_cost_name_qt*1).toString()+" "+ Material_cost_name_unit+" รวมทั้งสิ้น "+( Material_cost_value*1*( Material_cost_name_qt*1)).toLocaleString('en') +" บาท");
+    
+
+  Total_budget = Total_budget + (( Material_cost_value*1)*( Material_cost_name_qt*1));
   document.getElementById("total_budget").value = (Total_budget*1).toLocaleString('en');
   
   li.appendChild(t);
   
-  if (Genaral_cost_budget_value === '') {
+  if ( Material_cost_value === '') {
       alert("กรุณาใส่รายละเอียด !");
   } else {
-    Material_cost_budget_info[Material_cost_budget_name+"_"+Material_cost_budget_value] = Material_cost_budget_value*1;
+     Material_cost_budget_info[ Material_cost_name+"_"+ Material_cost_value] = [ Material_cost_value*1, Material_cost_name_qt*1, Material_cost_name_unit,Material_cost_time];
       document.getElementById("Material_cost_List").appendChild(li);    
   }
   document.getElementById("Material_cost_budget_name").value = "";
@@ -243,7 +260,7 @@ function add_Material_cost_budget(){
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("\u00D7");
   span.className = "close";
-  span.id = Material_cost_budget_name+"_"+Material_cost_budget_value.toString();
+  span.id = Material_cost_name+"_"+Material_cost_value.toString();
   span.appendChild(txt);
   li.appendChild(span);
   
@@ -276,10 +293,15 @@ function add_Public_cost_budget(){
   var li = document.createElement("li");
   
   var Public_cost_name = document.getElementById("Public_cost_name").value;
-  var Public_cost_value = document.getElementById("Public_cost_value").value;
-  var t = document.createTextNode(Public_cost_name+" "+(Public_cost_value*1).toLocaleString('en') +" บาท");
+  var Public_cost_value = document.getElementById("Public_cost_value").value;  
+  var  Public_cost_name_unit = document.getElementById("Public_cost_name_unit").value;
+  var  Public_cost_name_qt = document.getElementById("Public_cost_name_qt").value;
+  var Public_cost_time = document.getElementById("Public_cost_time").value;
   
-  Total_budget = Total_budget + Public_cost_value*1;
+  var t = document.createTextNode( Public_cost_time+" - "+Public_cost_name+"(หน่วยละ "+( Public_cost_value*1).toLocaleString('en')+" บาท)"+"จำนวน "+( Public_cost_name_qt*1).toString()+" "+ Public_cost_name_unit+" รวมทั้งสิ้น "+( Public_cost_value*1*( Public_cost_name_qt*1)).toLocaleString('en') +" บาท");
+  
+  
+  Total_budget = Total_budget + (( Public_cost_value*1)*( Public_cost_name_qt*1));
   document.getElementById("total_budget").value = (Total_budget*1).toLocaleString('en');
   
   li.appendChild(t);
@@ -287,7 +309,7 @@ function add_Public_cost_budget(){
   if (Public_cost_value === '') {
       alert("กรุณาใส่รายละเอียด !");
   } else {
-    Public_cost_budget_info[Public_cost_name+"_"+Public_cost_value] = Public_cost_value*1;
+    Public_cost_budget_info[ Public_cost_name+"_"+ Public_cost_value] = [ Public_cost_value*1, Public_cost_name_qt*1, Public_cost_name_unit,Public_cost_time];
       document.getElementById("Public_cost_List").appendChild(li);    
   }
   document.getElementById("Public_cost_name").value = "";
@@ -329,9 +351,14 @@ function add_durable_articles_budget(){
   
   var durable_articles_name = document.getElementById("durable_articles_name").value;
   var durable_articles_value = document.getElementById("durable_articles_value").value;
-  var t = document.createTextNode(durable_articles_name+" "+(durable_articles_value*1).toLocaleString('en') +" บาท");
+  var durable_articles_name_unit = document.getElementById("durable_articles_name_unit").value;
+  var durable_articles_name_qt = document.getElementById("durable_articles_name_qt").value;
+  var durable_articles_time = document.getElementById("durable_articles_time").value;
+
   
-  Total_budget = Total_budget + durable_articles_value*1;
+  var t = document.createTextNode(durable_articles_time+" - "+durable_articles_name+"(หน่วยละ "+(durable_articles_value*1).toLocaleString('en')+" บาท)"+"จำนวน "+(durable_articles_name_qt*1).toString()+" "+durable_articles_name_unit+" รวมทั้งสิ้น "+(durable_articles_value*1*(durable_articles_name_qt*1)).toLocaleString('en') +" บาท");
+  
+  Total_budget = Total_budget + ((durable_articles_value*1)*(durable_articles_name_qt*1));
   document.getElementById("total_budget").value = (Total_budget*1).toLocaleString('en');
   
   li.appendChild(t);
@@ -339,7 +366,7 @@ function add_durable_articles_budget(){
   if (durable_articles_value === '') {
       alert("กรุณาใส่รายละเอียด !");
   } else {
-    durable_articles_budget_info[durable_articles_name+"_"+durable_articles_value] = durable_articles_value*1;
+   durable_articles_budget_info[durable_articles_name+"_"+durable_articles_value] = [durable_articles_value*1,durable_articles_name_qt*1,durable_articles_name_unit,durable_articles_time];
       document.getElementById("durable_articles_List").appendChild(li);    
   }
   document.getElementById("durable_articles_name").value = "";
@@ -381,10 +408,15 @@ function add_Building_budget(){
   var li = document.createElement("li");
   
   var Building_name = document.getElementById("Building_name").value;
-  var Building_value = document.getElementById("Building_value").value;
-  var t = document.createTextNode(Building_name+" "+(Building_value*1).toLocaleString('en') +" บาท");
+  var Building_value = document.getElementById("Building_value").value; 
+  var Building_name_unit = document.getElementById("Building_name_unit").value;
+  var Building_name_qt = document.getElementById("Building_name_qt").value;
+  var Building_time = document.getElementById("Building_time").value;
+
   
-  Total_budget = Total_budget + Building_value*1;
+  var t = document.createTextNode(Building_time+" - "+Building_name+"(หน่วยละ "+(Building_value*1).toLocaleString('en')+" บาท)"+"จำนวน "+(Building_name_qt*1).toString()+" "+Building_name_unit+" รวมทั้งสิ้น "+(Building_value*1*(Building_name_qt*1)).toLocaleString('en') +" บาท");
+  
+  Total_budget = Total_budget + ((Building_value*1)*(Building_name_qt*1));
   document.getElementById("total_budget").value = (Total_budget*1).toLocaleString('en');
   
   li.appendChild(t);
@@ -392,7 +424,7 @@ function add_Building_budget(){
   if (Building_value === '') {
       alert("กรุณาใส่รายละเอียด !");
   } else {
-    Building_budget_info[Building_name+"_"+Building_value] = Building_value*1;
+    Building_budget_info[Building_name+"_"+Building_value] = [Building_value*1,Building_name_qt*1,Building_name_unit,Building_time];
       document.getElementById("Building_List").appendChild(li);    
   }
   document.getElementById("Building_name").value = "";

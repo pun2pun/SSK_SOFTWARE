@@ -79,7 +79,7 @@
   <div class="form-row">
     <div class="form-group col-md-4">
       <label for="inputState">ปีงบประมาณ</label>
-      <select id="inputState" class="form-control">
+      <select id="inputState" class="form-control" disabled>
         <option selected>ทั้งหมด</option>
         <option>2563</option>
         <option>2564</option>
@@ -87,8 +87,8 @@
       </select>
     </div>
     <div class="form-group col-md-6">
-      <label for="inputState">หน่วยงานที่สังกัด</label>
-      <select id="inputState" class="form-control">
+      <label for="inputState" disabled>หน่วยงานที่สังกัด</label>
+      <select id="inputState" class="form-control" disabled>
         <option selected>ทั้งหมด</option>
         <option>...</option>
       </select>
@@ -98,8 +98,8 @@
   <div class="form-row">
     <div class="form-group col-md-4">
       <label for="inputState">สถานะโครงการ</label>
-      <select id="inputState" class="form-control">
-        <option selected>ทั้งหมด</option>
+      <select id="inputState" class="form-control" disabled>
+        <option selected >ทั้งหมด</option>
         <option>เก่า</option>
         <option>ใหม่</option>
         <option>ต่อเนื่อง</option>
@@ -111,7 +111,6 @@
       <button type="submit" class="btn btn-primary col-sm-6">ค้นหา</button>
     </div>
   </div>
-
 </form> 
 
 
@@ -141,9 +140,9 @@
       <td> 
         
         <input type="hidden" name="name_project"  id="name_project" value="<%= list_project[index].name_project %>">
-        <button class="btn btn-info" type="submit" >view</button>
+        <button class="btn btn-info" type="submit" >ตรวจสอบ</button>
       
-        <a href="<%= link %>" download><button class="btn btn-info"  >download</button></a>
+        
       </td>
     </form>
     

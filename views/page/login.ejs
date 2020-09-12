@@ -8,11 +8,11 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <title>Ubonmicrotechnology | SingIN</title>
-    <link rel="icon" href="/image/Profile_page-01.ico" />
+   
+    <title>ลงชื่อเข้าสู่ระบบ</title>
+   <!--<link rel="icon" href="/image/Profile_page-01.ico" />--> 
 </head>
-<body>
+<body >
     <div class="wrapper fadeInDown">
         <div id="formContent">
           <!-- Tabs Titles -->
@@ -24,16 +24,17 @@
               <% } %>
           <!-- Icon -->
           <div class="fadeIn first">
-            <img style="margin-top: 50px;" src="./image/logo.png" id="icon" alt="User Icon" />
+            <!--<img style="margin-top: 50px;" src="./image/logo.png" id="icon" alt="User Icon" /> -->
+            <P style="margin-top: 50px;font-size: large;">ลงชื่อเข้าสู่ระบบ</P>
           </div>
       
           <!-- Login Form -->
           <form action="/login" method="post" style="margin-top: 50px;">
             <input type="text" id="login" class="fadeIn second" name="email" placeholder="login">
             <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-            <input type="submit" class="fadeIn fourth" value="Log In" style="margin-top: 50px;">
+            <input type="submit" class="fadeIn fourth" value="Log In" style="background-color: rgb(252, 121, 191);border-color: rgb(252, 121, 191) ;margin-top: 50px;" >
             
-            <a class="underlineHover" style="color: #D02037;margin-top: 20px;" href="/signup">Register</a>
+            <a class="underlineHover" style="color: #df64a8;margin-top: 20px;" href="/signup">Register</a>
           </form>
       
           <!-- Remind Passowrd -->

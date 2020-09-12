@@ -44,6 +44,7 @@
             <th scope="col">ลำดับ</th>
             <th scope="col">ชื่อโครงการ</th>
             <th scope="col">จำนวนงบ</th>
+            <th scope="col">ประเภทงบ</th>
             <th scope="col">      </th>
           </tr>
         </thead>
@@ -55,16 +56,14 @@
           <tr>
             <th scope="row" style="text-align: left;"><%= index+1 %> </th>
             <td style="text-align: left;"><%=  list_project[index].name_project %></td>
-            <td style="text-align: left;"><%=  list_project[index].Budget.total_budget %></td>
+            <td style="text-align: left;"><%=  (list_project[index].Budget.total_budget*1).toLocaleString('es') %></td>
+            <td style="text-align: left;"><%=   list_project[index].Budget_type %></td>
             <% var link = "storeFile/"+list_project[index].name_project+".docx" %> 
             <td> 
               <form action="/projectDetail" method="POST">
                 <td> 
-                  
                   <input type="hidden" name="name_project"  id="name_project" value="<%= list_project[index].name_project %>">
                   <button class="btn btn-info" type="submit" >view</button>
-                
-                  <a href="<%= link %>" download><button class="btn btn-info"  >download</button></a>
                 </td>
               </form
              

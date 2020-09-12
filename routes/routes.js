@@ -233,29 +233,38 @@ module.exports = function (app, passport) {
         var durable_articles_budget_array = []
         var Building_budget_array = []
 
+        var total_budget_cal = 0;
+
           for (var key in pserson_budget_json) {
-            pserson_budget_array.push([key,pserson_budget_json[key]])
+            pserson_budget_array.push([key,pserson_budget_json[key][0],pserson_budget_json[key][1],pserson_budget_json[key][2],pserson_budget_json[key][3]])
+            total_budget_cal =total_budget_cal + ( (pserson_budget_json[key][0]*1) * (pserson_budget_json[key][1]*1))
           }
           for (var key in Compensation_budget_json) {
-            Compensation_budget_array.push([key,Compensation_budget_json[key]])
+            Compensation_budget_array.push([key,Compensation_budget_json[key][0],Compensation_budget_json[key][1],Compensation_budget_json[key][2],Compensation_budget_json[key][3]])
+            total_budget_cal =total_budget_cal + ( (Compensation_budget_json[key][0]*1) * (Compensation_budget_json[key][1]*1))
           }
           for (var key in Genaral_cost_budget_json) {
-            Genaral_cost_budget_array.push([key,Genaral_cost_budget_json[key]])
-          }
+            Genaral_cost_budget_array.push([key,Genaral_cost_budget_json[key][0],Genaral_cost_budget_json[key][1],Genaral_cost_budget_json[key][2],Genaral_cost_budget_json[key][3]])
+            total_budget_cal =total_budget_cal + ( (Genaral_cost_budget_json[key][0]*1) * (Genaral_cost_budget_json[key][1]*1))
+        }
           for (var key in Material_budget_json) {
-            Material_budget_array.push([key,Material_budget_json[key]])
-          }
+            Material_budget_array.push([key,Material_budget_json[key][0],Material_budget_json[key][1],Material_budget_json[key][2],Material_budget_json[key][3]])
+            total_budget_cal =total_budget_cal + ( (Material_budget_json[key][0]*1) * (Material_budget_json[key][1]*1))
+        }
           for (var key in Public_budget_json) {
-            Public_budget_array.push([key,Public_budget_json[key]])
-          }
+            Public_budget_array.push([key,Public_budget_json[key][0],Public_budget_json[key][1],Public_budget_json[key][2],Public_budget_json[key][3]])
+            total_budget_cal =total_budget_cal + ( (Public_budget_json[key][0]*1) * (Public_budget_json[key][1]*1))
+        }
           for (var key in durable_articles_budget_json) {
-            durable_articles_budget_array.push([key,durable_articles_budget_json[key]])
-          }
+            durable_articles_budget_array.push([key,durable_articles_budget_json[key][0],durable_articles_budget_json[key][1],durable_articles_budget_json[key][2],durable_articles_budget_json[key][3]])
+            total_budget_cal =total_budget_cal + ( (durable_articles_budget_json[key][0]*1) * (durable_articles_budget_json[key][1]*1))
+        }
           for (var key in Building_budget_json) {
-            Building_budget_array.push([key,Building_budget_json[key]])
-          }
+            Building_budget_array.push([key,Building_budget_json[key][0],Building_budget_json[key][1],Building_budget_json[key][2],Building_budget_json[key][3]])
+            total_budget_cal =total_budget_cal + ( (Building_budget_json[key][0]*1) * (Building_budget_json[key][1]*1))
+        }
        
-        
+        console.log(pserson_budget_array)
         const filter = {project_ID:req.body.project_ID};
         const update = {
             project_status:"เสนอโครงการ" ,
@@ -273,7 +282,7 @@ module.exports = function (app, passport) {
                 durable_articles:durable_articles_budget_array,
                 Structure_cost:Building_budget_array
             },
-            total_budget:req.body.total_budget   
+            total_budget:total_budget_cal   
        }};
        
        infoShema.findOneAndUpdate(filter,update,{new: true,upsert:true}, function(err,doc){
@@ -409,12 +418,12 @@ module.exports = function (app, passport) {
 
                 if(req.user.local.level == 'Admin'){
                     profilePage  = 'admin_view/admin_home.ejs'
-                    budget.find({},function(error, comments){   
+                      
                             infoShema.find({},function(error, comments2){        
-                            budgetSpare= comments              
-                            res.render(profilePage, {projectInfo:comments2, budget_info:budgetSpare , user: req.user }); 
+                                        
+                            res.render(profilePage, {projectInfo:comments2 , user: req.user }); 
                                 });    
-                        }); 
+                       
                 }
                 else{
                     profilePage = 'page/profile.ejs';
@@ -442,7 +451,35 @@ module.exports = function (app, passport) {
         
         infoShema.findOne({name_project: req.body.name_project}, function(err,obj) {
 
-            res.render('page/project_view.ejs', { projectInfo:obj, user: req.user }); 
+            plandb.findOne({},function(err,planData){
+
+                
+
+                var country_strategy_index= planData.contry_statigy.indexOf(obj.data.strategyInfo.country_strategy);
+                var spt_strategy_index= planData.spt_statigy.indexOf(obj.data.strategyInfo.spt_strategy);
+                var school_standard_index = planData.shool_standard.indexOf(obj.data.strategyInfo.school_standard);
+                var indicator_index = planData.indicator.indexOf(obj.data.strategyInfo.indicator);
+                var Metric_index = planData.target.indexOf(obj.data.strategyInfo.Metric);
+                var School_strategy_index = planData.school__statigy.indexOf(obj.data.strategyInfo.School_strategy);
+                var Main_project_index = planData.main_project_school.indexOf(obj.data.strategyInfo.Main_project);
+                var Main_activities_index = planData.main_activities.indexOf(obj.data.strategyInfo.Main_activities);
+
+                res.render('page/project_view.ejs', { 
+                    projectInfo:obj, 
+                    user: req.user ,
+                    strategy_index_list:[country_strategy_index,
+                        spt_strategy_index,
+                        school_standard_index,
+                        indicator_index,
+                        Metric_index,
+                        School_strategy_index,
+                        Main_project_index,
+                        Main_activities_index
+                    ]
+                });
+            })
+
+             
          });
 
        
