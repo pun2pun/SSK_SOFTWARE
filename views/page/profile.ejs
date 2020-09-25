@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+    <link rel = "icon" href = "./views/image/school_logo.ico" type = "image/x-icon"> 
 </head>
 
 <body style="font-family:  'Kanit', sans-serif;">
@@ -44,19 +44,19 @@
     <div class="row">
       <div class="col-sm-4" style="margin-top: 50px;">
         
-        <a href="/SFM000"><div class="card text-white bg-warning  mb-3" style="margin-top: 16px; max-width: 16rem;">
+        <a href="/SFM000"><div class="card text-white bg-warning  mb-3" style="margin-top: 16px; max-width: 20rem;">
          <div class="card-header"  > <row><col><i class="fa fa-file" ></i></col><col>   </col><col>เสนอโครงการ</col></row> </div>
         </div></a>
         
-        <a href="/AP001"><div class="card text-white bg-danger  mb-3" style="max-width: 16rem;">
-          <div class="card-header"  > <row><col><i class="fa fa-search" ></i></col><col>   </col><col>ขออนุมัติจัดกิจกรรม</col></row> </div>
+        <a href="/AP001"><div class="card text-white bg-danger  mb-3" style="max-width: 20rem;">
+          <div class="card-header"  > <row><col><i class="fa fa-search" ></i></col><col>   </col><col>ขออนุมัติโครงการ</col></row> </div>
         </div></a>
 
-        <div class="card text-white bg-info  mb-3" style="max-width: 16rem;">
-          <div class="card-header"  > <row><col><i class="fa fa-check" ></i></col><col>   </col><col>รายงานผลการดำเนินงาน</col></row> </div>
+        <div class="card text-white bg-info  mb-3" style="max-width: 20rem;">
+          <div class="card-header"  > <row><col><i class="fa fa-check" ></i></col><col>   </col><col>ความก้าวหน้าของโครงการ</col></row> </div>
         </div>
-        <div class="card text-white bg-success  mb-3" style="max-width: 16rem;">
-          <div class="card-header"  > <row><col><i class="fa fa-user" ></i></col><col>   </col><col>รายงานฉบับสมบูรณ์</col></row> </div>
+        <div class="card text-white bg-success  mb-3" style="max-width: 20rem;">
+          <div class="card-header"  > <row><col><i class="fa fa-user" ></i></col><col>   </col><col>รายงานโครงการ</col></row> </div>
         </div>
       </div>
       <div class="col-sm-8" ">
@@ -119,6 +119,7 @@
     <tr class="bg-danger" style="color: azure;">
       <th scope="col">ลำดับ</th>
       <th scope="col">ชื่อโครงการ</th>
+      <th scope="col">งบที่ขอ</th>
       <th scope="col">สถาณะ</th>
       <th scope="col">      </th>
     </tr>
@@ -133,18 +134,29 @@
     <tr style="font-weight: normal;background-color: white;" >
       <th scope="row" style="text-align: left;"><%= number %> </th>
       <td style="text-align: left;"><%=  list_project[index].name_project %></td>
+      <td style="text-align: left;"><%=  Number(list_project[index].Budget.total_budget).toLocaleString("en") %></td>
       <td style="text-align: left;"><%=  list_project[index].project_status %></td>
       <% var link = "storeFile/"+list_project[index].name_project+".docx" %> 
 
-      <form action="/projectDetail" method="POST">
-      <td> 
-        
-        <input type="hidden" name="name_project"  id="name_project" value="<%= list_project[index].name_project %>">
-        <button class="btn btn-info" type="submit" >ตรวจสอบ</button>
       
+      <td> 
+        <div class="form-inline">
+        <form action="/projectDetail" method="POST">
+        <input type="hidden" name="project_ID"  id="project_ID" value="<%= list_project[index].project_ID %>">
+        <button class="btn btn-info" type="submit" style="margin-left: 15px;" ><i class="fa fa-search"></i></button>  
+        </form>
+
+        <form action="/projectEdit" method="POST">
+        <input type="hidden" name="project_ID"  id="project_ID" value="<%= list_project[index].project_ID %>">
+        <button class="btn btn-warning" style="margin-left: 15px;"><i class="fa fa-edit"></i></button>
+        </form>
         
-      </td>
-    </form>
+        <form action="/projectErase" method="POST">
+        <input type="hidden" name="project_ID"  id="project_ID" value="<%= list_project[index].project_ID %>">
+        <button class="btn btn-danger" type="submit" style="margin-left: 15px;"><i class="fa fa-trash"></i></button>
+        </form>
+      </td> 
+    </div>
     
     </tr>
   <% }} %> 

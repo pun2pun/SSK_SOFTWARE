@@ -13,6 +13,7 @@ var infoSchemas = mongoose.Schema({
         
         year_project:String,
         property_project: String,
+        property_project_2: String,
 
         strategyInfo:
         {

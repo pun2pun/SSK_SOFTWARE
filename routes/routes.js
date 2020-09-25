@@ -104,6 +104,7 @@ module.exports = function (app, passport) {
             data:{
                 year_project: req.body.year_project,
                 property_project:req.body.property_project,
+                property_project_2:req.body.property_project_2,
                 strategyInfo:
                     {
                         country_strategy:req.body.country_strategy,
@@ -449,12 +450,9 @@ module.exports = function (app, passport) {
 
         console.log(req.body)  
         
-        infoShema.findOne({name_project: req.body.name_project}, function(err,obj) {
+        infoShema.findOne({project_ID: req.body.project_ID}, function(err,obj) {
 
-            plandb.findOne({},function(err,planData){
-
-                
-
+            plandb.findOne({},function(err,planData){                   
                 var country_strategy_index= planData.contry_statigy.indexOf(obj.data.strategyInfo.country_strategy);
                 var spt_strategy_index= planData.spt_statigy.indexOf(obj.data.strategyInfo.spt_strategy);
                 var school_standard_index = planData.shool_standard.indexOf(obj.data.strategyInfo.school_standard);
@@ -477,16 +475,111 @@ module.exports = function (app, passport) {
                         Main_activities_index
                     ]
                 });
-            })
-
-             
-         });
-
-       
-            
-      
+            })       
+         });       
     });
 
+
+    app.post('/projectEdit', function (req, res) {
+        var Edit_filter = {
+            project_ID: req.body.project_ID
+        }
+        infoShema.findOne(Edit_filter,function(err, obj){
+            plandb.findOne({},function(err,planData){                   
+                var country_strategy_index= planData.contry_statigy.indexOf(obj.data.strategyInfo.country_strategy);
+                var spt_strategy_index= planData.spt_statigy.indexOf(obj.data.strategyInfo.spt_strategy);
+                var school_standard_index = planData.shool_standard.indexOf(obj.data.strategyInfo.school_standard);
+                var indicator_index = planData.indicator.indexOf(obj.data.strategyInfo.indicator);
+                var Metric_index = planData.target.indexOf(obj.data.strategyInfo.Metric);
+                var School_strategy_index = planData.school__statigy.indexOf(obj.data.strategyInfo.School_strategy);
+                var Main_project_index = planData.main_project_school.indexOf(obj.data.strategyInfo.Main_project);
+                var Main_activities_index = planData.main_activities.indexOf(obj.data.strategyInfo.Main_activities);
+
+                res.render('page/edit_page.ejs', { 
+                    projectInfo:obj, 
+                    project_ID:req.body.project_ID,
+                    user: req.user ,
+                    strategy_index_list:[country_strategy_index,
+                        spt_strategy_index,
+                        school_standard_index,
+                        indicator_index,
+                        Metric_index,
+                        School_strategy_index,
+                        Main_project_index,
+                        Main_activities_index
+                    ]
+                });
+            })
+        })
+    });
+
+    app.post('/projectEdit/save', function (req, res) {
+        var Edit_filter = {
+            project_ID: req.body.project_ID
+        }
+        var edit_update = {
+            data_detail:{ 
+                goal:{
+                    body:req.body.goal_body,
+                    Success_Indicators:req.body.goal_Success_Indicators,
+                    Success_conditions:req.body.goal_Success_conditions,
+                },
+                purpose:
+                {
+                    body:req.body.purpose_body,
+                    Success_Indicators:req.body.purpose_Success_Indicators,
+                    Success_conditions:req.body.purpose_Success_conditions,
+                },
+                output:
+                {
+                    body:req.body.output_body,
+                    Success_Indicators:req.body.output_Success_Indicators,
+                    Success_conditions:req.body.output_Success_conditions,
+                },
+                activities:
+                {
+                    body:req.body.activities_body,
+                    Success_Indicators:req.body.activities_Success_Indicators,
+                    Success_conditions:req.body.activities_Success_conditions,
+                },
+                input:
+                {
+                    body:req.body.input_body,
+                    Success_Indicators:req.body.input_Success_Indicators,
+                    Success_conditions:req.body.input_Success_conditions,
+                }
+            },
+            data_detail_2:{ 
+                Proof_of_evidence:
+                {
+                    Assessment_method:req.body.Assessment_method,
+                    tools:req.body.tools,
+                    Budget:[req.body.budget_1,req.body.budget_2,req.body.budget_3,req.body.budget_4,req.body.budget_5],
+                    Processing_time:{ Start:req.body.start_date , End:req.body.End_date},
+                    Responsible_person:req.body.Responsible_person
+                    
+                }   
+           }
+        }
+        infoShema.findOneAndUpdate(Edit_filter,edit_update,{new: true,upsert:true}, function(err,doc){
+        
+            infoShema.find({},function(error, comments){           
+                console.log(comments.length)
+                res.redirect('/profile');    
+                });
+ 
+       
+        })
+    });
+
+    app.post('/projectErase', function (req, res) {
+        var delete_filter = {
+            project_ID: req.body.project_ID
+        }
+        infoShema.deleteOne(delete_filter,function(err, result){
+            res.redirect("/profile")
+        })
+    });
 
    
 

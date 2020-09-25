@@ -160,7 +160,9 @@
             <%  }%>
           </select>
 
-        <% } %>
+        <% } else{ %>
+          <p class="text-left" style="color: rgb(202, 21, 21);"> **โครงการ/กิจกรรมประเภทงานประจำตามโครงสร้าง ไม่ต้องกรอกในส่วนนี้</p> 
+          <% } %>
         </div>
       
          <!----------------------------------------------------------------------------- -->
@@ -187,18 +189,20 @@
                 </label>
             </div> 
             <div class="form-check"  style="margin-left: 20px;">
-              <input class="form-check-input" type="radio" name="property_project" id="property_project" value="งบด้านวิชาการ">
+              <input class="form-check-input" type="radio" name="property_project_2" id="property_project_2" value="งบด้านวิชาการ"checked>
               <label class="form-check-label" for="exampleRadios4">
                 งบด้านวิชาการ
               </label>
           </div>
           <div class="form-check"  style="margin-left: 20px;">
-            <input class="form-check-input" type="radio" name="property_project" id="property_project" value="งบบริหารทั่วไป">
+            <input class="form-check-input" type="radio" name="property_project_2" id="property_project_2" value="งบบริหารทั่วไป">
             <label class="form-check-label" for="exampleRadios5">
               งบบริหารทั่วไป
             </label>
         </div>
         </div>
+
+
        
         <div  class="form-inline" style="margin-top: 100px;" >
             <label style="font-size: 18px;">3.โครงการ/กิจกรรม</label>

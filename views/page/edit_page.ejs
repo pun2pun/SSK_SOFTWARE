@@ -1,0 +1,216 @@
+<html>
+
+<head>
+    <title>แก้ไขโครงการ</title>
+    <!-- load bootstrap css -->
+    <link rel="stylesheet" href="./bootstrap-4.4.1-dist/css/bootstrap.css">
+    <!-- load fontawesome -->
+    <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+
+<body style="font-family:  'Kanit', sans-serif;">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-pink">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            MENU
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <span class="navbar-text" style="margin-right: 10px;">
+            <strong>ชื่อ</strong> : <%= user.local.name %>
+          </span>
+        <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='/login'" type="button">Logout</button>
+      </form>
+    </div>
+  </nav>
+
+<!--------------------------------------------------------------- Main choice  ---------------->
+
+<%var statigy_list = ["ยุทธศาสตร์ที่ 1 : การเพิ่มขีดความสามารถในการแข่งขันของประเทศปานกลาง (Growth & Competitiveness)","ยุทธศาสตร์ที่ 2 : การลดความเหลื่อมล้ำ (Inclusive Growth)","ยุทธศาสตร์ที่ 3 : การเติบโตที่เป็นมิตรต่อสิ่งแวดล้อม (Green Growth)","ยุทธศาสตร์ที่ 4 : การสร้างความสมดุลและปรับระบบบริหารจัดการภาครัฐ (Internal Process)"] %>
+<% var st2_list = ["ยุทธศาสตร์ที่ 1 : การพัฒนาคุณภาพผู้เรียนในระดับการศึกษาขั้นพื้นฐาน","ยุทธศาสตร์ที่ 2 : การเพิ่มโอกาสให้ผู้เรียนเข้าถึงบริการการศึกษาขั้นพื้นฐาน","ยุทธศาสตร์ที่ 3 : การพัฒนาคุณภาพครูและบุคลากรทางการศึกษา","ยุทธศาสตร์ที่ 4 : การพัฒนาระบบการบริหารจัดการ"] %>
+<% var st3_list = ["มาตรฐานที่ 1 : คุณภาพของผู้เรียน","มาตรฐานที่ 2 : กระบวนการบริหารและการจัดการ","มาตรฐานที่ 3 : กระบวนการจัดการเรียนการสอนที่เน้นผู้เรียนเป็นสำคัญ"] %>
+<% var st4_list = ["กลยุทธ์ที่ 1 : พัฒนาผู้เรียนให้เป็นพลโลกแห่งศตวรรษที่ 21","กลยุทธ์ที่ 2 : พัฒนาศักยภาพและจรรยาบรรณวิชาชีพคร","กลยุทธ์ที่ 3 : ส่งเสริมและพัฒนาหลักสูตรสถานศึกษาตามกลุ่มศักยภาพผู้เรียน","กลยุทธ์ที่ 4 : พัฒนาศักยภาพระบบการกำกับและสะท้อนผลมาตรฐานคุณภาพการบริหารจัดการ","กลยุทธ์ที่ 5 : ส่งเสริมพัฒนาภาคีเครือข่ายความร่วมมือการพัฒนากิจกรรมการเรียนรู้ตามศาสตร์พระราชา"] %>
+
+
+<form action="/projectEdit/save" method="POST"> 
+<input type="hidden" name="project_ID" value="<%= project_ID %>">
+<center><img src="image/title-01.jpg" width="1000" height="150"></center>
+  <div class="container" style="width: 1000px;margin-top: 50px; margin-bottom: 50px; border: 1px solid #a8a6a6;font-size: 17px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    
+    <p class="text-center" style="font-size: 20px;margin-top: 50px;"> รายละเอียดโครงการ/กิจกรรม ปีงบประมาณ 2564 </p>
+    <p class="text-center" style="font-size: 20px;">โรงเรียนสตรีสิริเกศ</p>
+    <p class="text-center" style="font-size: 20px;">(<%=projectInfo.Budget_type %>)</p>
+    <p class="text-center" style="font-size: 20px;">………………………………………………………………</p>
+    
+    <% if(projectInfo.Budget_type == "งานพัฒนาตามกลยุทธ์"){ %>
+    <p class="text-left" style="font-size: 18px;font-weight: bolder;margin-top: 50px;">ความสอดคล้อง</p>
+    <div class="row" ">
+      <div class="col"><p class="text-center" style="font-size: 16x;"><%= "ยุทธศาสตร์ประเทศ ยุทธศาสตร์ที่ "+((strategy_index_list[0]*1)+1) %></p></div>
+      <div class="col"><p class="text-center" style="font-size: 16x;"><%= "ยุทธศาสตร์ สพฐ.ยุทธศาสตร์ที่ "+((strategy_index_list[1]*1)+1) %></p></div>
+    </div>
+   
+    <div class="row" style="margin-top: 10px;">
+      <div class="col"><p class="text-center" style="font-size: 16x;"><%= "มาตรฐานการศึกษาโรงเรียน มาตรฐานที่	 "+((strategy_index_list[2]*1)+1) %></p></div>
+      <div class="col"><p class="text-center" style="font-size: 16x;"><%= "ตัวบ่งชี้ที่ "+((strategy_index_list[3]*1)+1) +" ตัวชี้วัดที่ "+((strategy_index_list[4]*1)+1) %></p></div>
+    </div>
+
+    <div class="row" style="margin-top: 10px;">
+      <div class="col"><p class="text-center" style="font-size: 16x;"><%= "กลยุทธ์ของโรงเรียน  กลยุทธ์ที่	 "+((strategy_index_list[5]*1)+1) %></p></div>
+      <div class="col"><p class="text-center" style="font-size: 16x;"><%= "โครงการหลักที่ "+((strategy_index_list[6]*1)+1) +" กิจกรรมหลักที่ "+((strategy_index_list[7]*1)+1) %></p></div>
+    </div>
+
+    <% }%>
+
+    
+    <p class="text-left" style="font-size: 18px;margin-top: 50px;"><%= "1. ลักษณะของโครงการ : " +projectInfo.data.property_project %></p>
+    <p class="text-left" style="font-size: 18px;"><%= "2. โครงการ / กิจกรรม : " +projectInfo.name_project %></p>
+
+    <table class="table table-bordered" style="margin-top: 50px;">
+      <thead>
+        <tr style="vertical-align: middle;" >
+          <th scope="col"">สาระสำคัญ </th>
+          <th scope="col">ตัวชี้วัดความสำเร็จ/เป้าหมาย</th>
+          <th scope="col">เงื่อนไขความสำเร็จ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope="row"><p style="font-weight: bold;">จุดมุ่งหมาย (Goal)</p><textarea id="goal_body" name="goal_body" class="form-control" aria-label="With textarea" style="height: 250px;"><%= projectInfo.data_detail.goal.body %></textarea></td>
+          <td style="font-weight: lighter;"><textarea id="goal_Success_Indicators" name="goal_Success_Indicators" class="form-control" aria-label="With textarea" style="height: 290px;"><%= projectInfo.data_detail.goal.Success_Indicators %></textarea></td>
+          <td><textarea id="goal_Success_conditions" name="goal_Success_conditions" class="form-control" aria-label="With textarea" style="height: 290px;"><%= projectInfo.data_detail.goal.Success_conditions %></textarea></td>
+        </tr>
+
+        <tr>
+          <td scope="row"><p style="font-weight: bold;">วัตถุประสงค์(Purpose)</p><textarea id="purpose_body" name="purpose_body" class="form-control" aria-label="With textarea" style="height: 250px;"><%= projectInfo.data_detail.purpose.body %></textarea></td>
+          <td><textarea id="purpose_Success_Indicators" name="purpose_Success_Indicators" class="form-control" aria-label="With textarea" style="height: 290px;"><%= projectInfo.data_detail.purpose.Success_Indicators %></textarea></td>
+          <td><textarea id="purpose_Success_conditions" name="purpose_Success_conditions" class="form-control" aria-label="With textarea" style="height: 290px;"><%= projectInfo.data_detail.purpose.Success_conditions %></textarea></td>
+        </tr>
+
+        <tr>
+          <td scope="row"><p style="font-weight: bold;">ผลผลิต/ผลงาน (Output)</p><textarea id="output_body" name="output_body" class="form-control" aria-label="With textarea" style="height: 250px;"><%= projectInfo.data_detail.output.body %></textarea></td>
+          <td><textarea id="output_Success_Indicators" name="output_Success_Indicators" class="form-control" aria-label="With textarea" style="height: 290px;"><%= projectInfo.data_detail.output.Success_Indicators %></textarea></td>
+          <td><textarea id="output_Success_conditions" name="output_Success_conditions" class="form-control" aria-label="With textarea" style="height: 290px;"><%= projectInfo.data_detail.output.Success_conditions %></textarea></td>
+        </tr>
+
+        <tr>
+          <td scope="row"><p style="font-weight: bold;">กิจกรรม (Activities)</p><textarea id="output_body" name="activities_body" class="form-control" aria-label="With textarea" style="height: 250px;"><%= projectInfo.data_detail.activities.body %></textarea></td>
+          <td><textarea id="activities_Success_Indicators" name="activities_Success_Indicators" class="form-control" aria-label="With textarea" style="height: 290px;"><%= projectInfo.data_detail.activities.Success_Indicators %></textarea></td>
+          <td><textarea id="activities_Success_conditions" name="activities_Success_conditions" class="form-control" aria-label="With textarea" style="height: 290px;"><%= projectInfo.data_detail.activities.Success_conditions %></textarea></td>
+        </tr>
+
+        <tr>
+          <td scope="row"><p style="font-weight: bold;">ปัจจัย (Input)</p><textarea id="input_body" name="input_body" class="form-control" aria-label="With textarea" style="height: 250px;"><%= projectInfo.data_detail.input.body %></textarea></td>
+          <td><textarea id="input_Success_Indicators" name="input_Success_Indicators" class="form-control" aria-label="With textarea" style="height: 290px;"><%= projectInfo.data_detail.input.Success_Indicators %></textarea></td>
+          <td><textarea id="input_Success_conditions" name="input_Success_conditions" class="form-control" aria-label="With textarea" style="height: 290px;"><%= projectInfo.data_detail.input.Success_conditions %></textarea></td>
+        </tr>
+     
+      </tbody>
+    </table>
+
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 50px;">หลักฐานแหล่งพิสูจน์</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><textarea id="Assessment_method" name="Assessment_method" class="form-control" aria-label="With textarea" style="height: 150px;"><%= projectInfo.data_detail_2.Proof_of_evidence.Assessment_method %></textarea></p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">วิธีการประเมิน</p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">เครื่องมือ</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><textarea id="tools" name="tools" class="form-control" aria-label="With textarea" style="height: 150px;"><%= projectInfo.data_detail_2.Proof_of_evidence.tools %></textarea></p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">งบประมาณ (ระบุที่มางบประมาณ เช่น เงินอุดหนุน)</p>
+
+    <div class="input-group mb-3"  style="width: 500px;margin-left: 50px;">
+      <div class="input-group-prepend">
+        <span class="input-group-text" style="width: 250px;">เงินอุดหนุนค่าเล่าเรียน</span>
+      </div>
+      <input type="text" class="form-control" id="budget_1" name="budget_1" value="<%= projectInfo.data_detail_2.Proof_of_evidence.Budget[0] %>">
+      <div class="input-group-append">
+        <span class="input-group-text">บาท</span>
+      </div>
+    </div>
+
+    <div class="input-group mb-3"  style="width: 500px;margin-left: 50px;">
+      <div class="input-group-prepend">
+        <span class="input-group-text" style="width: 250px;">เงินอุดหนุนกิจกรรมพัฒนาผู้เรียน</span>
+      </div>
+      <input type="text" class="form-control" id="budget_2" name="budget_2" value="<%= projectInfo.data_detail_2.Proof_of_evidence.Budget[1] %>">
+      <div class="input-group-append">
+        <span class="input-group-text">บาท</span>
+      </div>
+    </div>
+
+    <div class="input-group mb-3"  style="width: 500px;margin-left: 50px;">
+      <div class="input-group-prepend">
+        <span class="input-group-text" style="width: 250px;">เงินรายได้สถานศึกษา</span>
+      </div>
+      <input type="text" class="form-control" id="budget_3" name="budget_3" value="<%= projectInfo.data_detail_2.Proof_of_evidence.Budget[2] %>">
+      <div class="input-group-append">
+        <span class="input-group-text">บาท</span>
+      </div>
+    </div>
+
+    <div class="input-group mb-3"  style="width: 500px;margin-left: 50px;">
+      <div class="input-group-prepend">
+        <span class="input-group-text" style="width: 250px;">เงินงบประมาณ</span>
+      </div>
+      <input type="text" class="form-control" id="budget_4" name="budget_4" value="<%= projectInfo.data_detail_2.Proof_of_evidence.Budget[3] %>">
+      <div class="input-group-append">
+        <span class="input-group-text">บาท</span>
+      </div>
+    </div>
+
+    <div class="input-group mb-3"  style="width: 500px;margin-left: 50px;">
+      <div class="input-group-prepend">
+        <span class="input-group-text" style="width: 250px;">เงินอื่นๆ</span>
+      </div>
+      <input type="text" class="form-control" id="budget_5" name="budget_5" value="<%= projectInfo.data_detail_2.Proof_of_evidence.Budget[4] %>">
+      <div class="input-group-append">
+        <span class="input-group-text">บาท</span>
+      </div>
+    </div>
+
+  
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">ระยะเวลาดำเนินการ</p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">วันที่เริ่มต้น : <input type="date" id="start_date" name="start_date"value="<%= projectInfo.data_detail_2.Proof_of_evidence.Processing_time.Start %>"></p>
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-left: 30px">วันที่สิ้นสุด : <input type="date" id="End_date" name="End_date"value="<%= projectInfo.data_detail_2.Proof_of_evidence.Processing_time.End %>"></p>
+
+    
+
+    <p class="text-left" style="font-size: 18px;font-weight: bold;margin-top: 30px;">ผู้รับผิดชอบ</p>
+    <p class="text-break"  style="font-size: 18px;margin-left: 60px;"><textarea id="Responsible_person" name="Responsible_person" class="form-control" aria-label="With textarea" style="height: 150px;"><%= projectInfo.data_detail_2.Proof_of_evidence.Responsible_person %></textarea></p>
+
+
+
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin-top: 30px;">
+
+
+    <div style="margin-top: 20px;margin-bottom: 100px;"><center>
+      <button type="submit" value="submited_2" class="btn btn-success" >Save</button>
+      <button type="button" class="btn btn-danger">Canle</button>
+     </div></center>
+  </form>
+</div>
+
+
+
+<div style="margin-bottom:100px ;"></div>
+
+</div>
+
+
+     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+</body>
+
+</html>
