@@ -8,7 +8,78 @@
     <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+    <style>
+      ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the list items */
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: #f9f9f9;
+  font-size: 12px;
+  transition: 0.2s;
+  width: 700px;
+  margin-left: 150px;
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  word-spacing: 5px;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+ul li:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+/* Darker background-color on hover */
+ul li:hover {
+  background: #ddd;
+}
+
+/* When clicked on, add a background color and strike out text */
+ul li.checked {
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+}
+
+/* Add a "checked" mark when clicked on */
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+.close { position: absolute;right: 0;top: 0;padding: 12px 16px 12px 16px;}
+.close_2{ position: absolute;right: 0;top: 0;padding: 12px 16px 12px 16px;}
+.close_3{ position: absolute;right: 0;top: 0;padding: 12px 16px 12px 16px;}
+.close_4{ position: absolute;right: 0;top: 0;padding: 12px 16px 12px 16px;}
+.close_5{ position: absolute;right: 0;top: 0;padding: 12px 16px 12px 16px;}
+.close_6{ position: absolute;right: 0;top: 0;padding: 12px 16px 12px 16px;}
+.close_7{ position: absolute;right: 0;top: 0;padding: 12px 16px 12px 16px;}
+
+.close:hover {background-color: #f44336;color: white}
+.close_2:hover{background-color: #f44336;color: white}
+.close_3:hover{background-color: #f44336;color: white}
+.close_4:hover{background-color: #f44336;color: white}
+.close_5:hover{background-color: #f44336;color: white}
+.close_6:hover{background-color: #f44336;color: white}
+.close_7:hover{background-color: #f44336;color: white}
+
+    </style>
 </head>
 
 <body style="font-family:  'Kanit', sans-serif;">
@@ -194,11 +265,83 @@
 
 
     <div style="margin-top: 20px;margin-bottom: 100px;"><center>
-      <button type="submit" value="submited_2" class="btn btn-success" >Save</button>
-      <button type="button" class="btn btn-danger">Canle</button>
+      <button type="submit" value="submited_2" class="btn btn-success" >บันทึก</button>
+      <button type="button" class="btn btn-danger" >ยกเลิก</button>
      </div></center>
   </form>
 </div>
+
+<div class="container" style="width: 1000px;margin-top: 50px; margin-bottom: 50px; border: 1px solid #a8a6a6;font-size: 17px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+  <p class="text-center" style="font-size: 18px;margin-top: 50px;"> ทรัพยากรโครงการ/กิจกรรม  </p>
+  <p class="text-center" style="font-size: 20px;font-weight: bold;"> <%= projectInfo.name_project %> </p>
+  <p class="text-center" style="font-size: 18px;"> ปีงบประมาณ 2564 </p>
+
+
+<div>
+  <div  class="form-inline" style="margin-top: 50px;margin-left: 50px;" >
+      <label style="font-size: 18px;background-color: #296DE2;width: 30px;color: #ffff;" > 10.1 </label>
+      <label style="font-size: 18px; margin-left: 10px;">งบบุคลากร(ค่าจ้างชั่วคราว)</label>
+  </div>
+</div>
+<div style="margin-top: 3px;">
+  <div class="form-row align-items-center">
+      <div class="col-sm-2 my-1">
+        
+      </div>
+      <div class="col-sm-4 my-1">
+        <label class="sr-only" for="person_budget_name">รายการ</label>
+        <input type="text" class="form-control" id="person_budget_name" placeholder="รายการ">
+      </div>
+
+
+      <div class="col-sm-2" style="margin-top: 15px;">
+          <div class="input-group mb-3">
+              <input type="number" class="form-control"  id="person_budget_value"  placeholder="ราคา" aria-label="จำนวนเงิน" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">บาท</span>
+              </div>
+            </div>
+      </div>   
+
+      <div class="col-sm-1 my-1">
+        <label class="sr-only" for="person_budget_qt">จำนวน</label>
+        <input type="text" class="form-control" id="person_budget_qt" placeholder="จำนวน">
+      </div>
+      
+      <div class="col-sm-1 my-1">
+        <label class="sr-only" for="person_budget_unit">หน่วย</label>
+        <input type="text" class="form-control" id="person_budget_unit" placeholder="หน่วย">
+      </div>
+
+      <div class="col my-1">
+      <select class="form-control" id="person_time">
+        <option value="ช่วงที่ 1">ช่วงที่ 1</option>
+        <option value="ช่วงที่ 2">ช่วงที่ 2</option>
+      </select>
+    </div>
+      
+      <div class="col-auto my-1">
+        <button type="button"  class="btn btn-success" onclick="add_person_budget()" >เพิ่ม</button>
+      </div>
+  </div>
+
+  <input hidden type="text" id="Person_List_data" value="{}" name="Person_List_data">
+  
+  
+  <ul id="Person_List" for="test" ></ul>
+  <script>
+    var person_budget_list = <%= projectInfo.name_project  %>;
+    var li = document.createElement("li");
+    var t = document.createTextNode(person_budget_list);
+    li.appendChild(t);
+    document.getElementById("Person_List").appendChild(li);  
+    
+  </script>
+  
+  
+</div>
+</div>
+
 
 
 
@@ -206,7 +349,7 @@
 
 </div>
 
-
+<script src="./script/Cal_edit_budget.js"></script>
      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

@@ -31,7 +31,10 @@ var total_budget_cal = document.getElementById("total_budget")
 document.getElementById("total_budget").value = (0*1).toLocaleString('en');
 
 
-    
+function updateTotoalBudget(){
+ // Total_budget = all_person_budget + all_Compensation_budget +all_Genaral_cost_budget + all_Material_cost_budget + all_Public_cost_budget + all_durable_articles_budget + all_Building_budget;
+  alert(all_person_budget+"______"+all_Compensation_budget)
+}
 
 
 var myNodelist = document.getElementsByTagName("LI");
@@ -45,7 +48,12 @@ for (i = 0; i < myNodelist.length; i++) {
 }
 // Click on a close button to hide the current list item
 var close = document.getElementsByClassName("close");
-
+var close_2 = document.getElementsByClassName("close_2");
+var close_3 = document.getElementsByClassName("close_3");
+var close_4 = document.getElementsByClassName("close_4");
+var close_5 = document.getElementsByClassName("close_5");
+var close_6 = document.getElementsByClassName("close_6");
+var close_7 = document.getElementsByClassName("close_7");
 
 //------------------------------------------------------------------------------------    10.1.1      -------------
 
@@ -61,7 +69,7 @@ function add_person_budget(){
     var t = document.createTextNode(person_budget_time+" - "+person_budget_name+"(หน่วยละ "+(person_budget_value*1).toLocaleString('en')+" บาท)"+" จำนวน "+(person_budget_name_qt*1).toString()+" "+person_budget_name_unit+" รวมทั้งสิ้น "+(person_budget_value*1*(person_budget_name_qt*1)).toLocaleString('en') +" บาท");
     
     li.appendChild(t);
-    all_person_budget = all_person_budget + person_budget_value*1;
+    all_person_budget = all_person_budget + ((person_budget_value*1)*(person_budget_name_qt*1));
     if (person_budget_value === '') {
         alert("กรุณาใส่รายละเอียด !");
     } else {
@@ -78,7 +86,7 @@ function add_person_budget(){
     span.id = person_budget_name+"_"+person_budget_value.toString();
     span.appendChild(txt);
     li.appendChild(span);
-    
+    //updateTotoalBudget()
     total_budget_cal.value = (Total_budget*1).toLocaleString('en');
     document.getElementById("Person_List_data").value = JSON.stringify(person_budget_info);
    // alert(JSON.stringify(person_budget_info))
@@ -90,20 +98,20 @@ function add_person_budget(){
 }
 
 function addBudget_1(div){
-  alert("อยู่่ในระหว่างการปรับปรุง")
-  /*
-            var ids = div.id    
-            alert("Delete 1")
-            person_budget_info[ids] = 0;           
+
+            var ids = div.id   
+            //alert(ids)  
+            delete person_budget_info[ids]
+            document.getElementById("Person_List_data").value = JSON.stringify(person_budget_info);          
             all_person_budget = 0;
             for (var key in person_budget_info) {
-                all_person_budget = all_person_budget+ person_budget_info[key] 
-              }
-              
+                all_person_budget = all_person_budget+ (person_budget_info[key][0] *person_budget_info[key][1] )
+              } 
+              //alert(all_person_budget)             
             Total_budget = all_person_budget + all_Compensation_budget +all_Genaral_cost_budget + all_Material_cost_budget + all_Public_cost_budget + all_durable_articles_budget + all_Building_budget;
             total_budget_cal.value = (Total_budget*1).toLocaleString('en');
             div.parentElement.remove();
-            */
+            
 } 
 
 
@@ -125,7 +133,7 @@ function add_Compensation_budget(){
   
   
   li.appendChild(t);
-  all_Compensation_budget = all_Compensation_budget + Compensation_value*1
+  all_Compensation_budget = all_Compensation_budget + ((Compensation_value*1)*(Compensation_name_qt*1))
   
   if (Compensation_value === '') {
       alert("กรุณาใส่รายละเอียด !");
@@ -139,34 +147,37 @@ function add_Compensation_budget(){
 
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("\u00D7");
-  span.className = "close";
+  span.className = "close_2";
   span.id = Compensation_name+"_"+Compensation_value.toString();
   span.appendChild(txt);
   li.appendChild(span);
  
   total_budget_cal.value = (Total_budget*1).toLocaleString('en');
   document.getElementById("Compensation_List_data").value = JSON.stringify(Compensation_budget_info);
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
+  //alert(close_2.length)
+  for (i = 0; i < close_2.length; i++) {
+    close_2[i].onclick = function() {
       addBudget_2(this)                 
       }
   }  
 }
 
 function addBudget_2(div){
-         alert("อยู่่ในระหว่างการปรับปรุง")
-         /*
-          var ids = div.id      
-          Compensation_budget_info[ids] = 0;           
-          all_Compensation_budget = 0;
-          for (var key in Compensation_budget_info) {
-            all_Compensation_budget = all_Compensation_budget+ Compensation_budget_info[key] 
-            }
-            
-         Total_budget =  all_person_budget + all_Compensation_budget +all_Genaral_cost_budget + all_Material_cost_budget + all_Public_cost_budget + all_durable_articles_budget + all_Building_budget;
-         total_budget_cal.value = (Total_budget*1).toLocaleString('en');
-          div.parentElement.remove();
-          */
+        
+         var ids = div.id    
+         //alert(ids)
+         //alert(JSON.stringify(Compensation_budget_info))
+            delete Compensation_budget_info[ids]
+            //alert(JSON.stringify(Compensation_budget_info))
+            document.getElementById("Compensation_List_data").value = JSON.stringify(Compensation_budget_info);          
+            all_Compensation_budget = 0;
+            for (var key in Compensation_budget_info) {
+              all_Compensation_budget = all_Compensation_budget+ (Compensation_budget_info[key][0] *Compensation_budget_info[key][1] )
+              }              
+            Total_budget = all_person_budget + all_Compensation_budget +all_Genaral_cost_budget + all_Material_cost_budget + all_Public_cost_budget + all_durable_articles_budget + all_Building_budget;
+            total_budget_cal.value = (Total_budget*1).toLocaleString('en');
+            div.parentElement.remove();
+            //updateTotoalBudget()
 } 
 
 //------------------------------------------------------------------------------------    10.2.2      -------------
@@ -187,7 +198,8 @@ function add_Genaral_cost_budget(){
   document.getElementById("total_budget").value = (Total_budget*1).toLocaleString('en');
   
   li.appendChild(t);
-  
+  all_Genaral_cost_budget = all_Genaral_cost_budget + ((Genaral_cost_value*1)*(Genaral_cost_name_qt*1))
+
   if (Genaral_cost_value === '') {
       alert("กรุณาใส่รายละเอียด !");
   } else {
@@ -200,32 +212,36 @@ function add_Genaral_cost_budget(){
 
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.id = Genaral_cost_budget_name+"_"+Genaral_cost_budget_value.toString();
+  span.className = "close_3";
+  span.id = Genaral_cost_name+"_"+Genaral_cost_value.toString();
+  
   span.appendChild(txt);
   li.appendChild(span);
   
   document.getElementById("Genaral_cost_List_data").value = JSON.stringify(Genaral_cost_budget_info);
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
+  for (i = 0; i < close_3.length; i++) {
+    close_3[i].onclick = function() {
         addBudget_3(this)                 
       }
   }  
 }
 
 function addBudget_3(div){
-          alert("อยู่่ในระหว่างการปรับปรุง")
-          /*
-          var ids = div.id
-          Genaral_cost_budget_info[ids] = 0;           
+          //alert("อยู่่ในระหว่างการปรับปรุง")
+          var ids = div.id   
+         // alert(ids) 
+          delete Genaral_cost_budget_info[ids]
+         // alert(JSON.stringify(Genaral_cost_budget_info))   
+          document.getElementById("Genaral_cost_List_data").value = JSON.stringify(Genaral_cost_budget_info);          
           all_Genaral_cost_budget = 0;
           for (var key in Genaral_cost_budget_info) {
-              all_Genaral_cost_budget = all_Genaral_cost_budget+ Genaral_cost_budget_info[key] 
-            }
+            all_Genaral_cost_budget = all_Genaral_cost_budget+ (Genaral_cost_budget_info[key][0] *Genaral_cost_budget_info[key][1] )
+            } 
+                      
           Total_budget = all_person_budget + all_Compensation_budget +all_Genaral_cost_budget + all_Material_cost_budget + all_Public_cost_budget + all_durable_articles_budget + all_Building_budget;
-          document.getElementById("total_budget").value = (Total_budget*1).toLocaleString('en');
+         // alert(all_person_budget+"-"+Total_budget) 
+          total_budget_cal.value = (Total_budget*1).toLocaleString('en');
           div.parentElement.remove();
-          */
 } 
 
 //------------------------------------------------------------------------------------    10.2.3      -------------
@@ -247,6 +263,7 @@ function add_Material_cost_budget(){
   document.getElementById("total_budget").value = (Total_budget*1).toLocaleString('en');
   
   li.appendChild(t);
+  all_Material_cost_budget = all_Material_cost_budget + ((Material_cost_value*1)*(Material_cost_name_qt*1))
   
   if ( Material_cost_value === '') {
       alert("กรุณาใส่รายละเอียด !");
@@ -259,32 +276,35 @@ function add_Material_cost_budget(){
 
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("\u00D7");
-  span.className = "close";
+  span.className = "close_4";
   span.id = Material_cost_name+"_"+Material_cost_value.toString();
   span.appendChild(txt);
   li.appendChild(span);
   
   document.getElementById("Material_cost_List_data").value = JSON.stringify(Material_cost_budget_info);
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
+  for (i = 0; i < close_4.length; i++) {
+    close_4[i].onclick = function() {
         addBudget_4(this)                 
       }
   }  
 }
 
 function addBudget_4(div){
-        alert("อยู่่ในระหว่างการปรับปรุง")
-        /*
-          var ids = div.id
-          Material_cost_budget_info[ids] = 0;           
+         //alert("อยู่่ในระหว่างการปรับปรุง")
+         var ids = div.id   
+         // alert(ids) 
+          delete Material_cost_budget_info[ids]
+         // alert(JSON.stringify(Genaral_cost_budget_info))   
+          document.getElementById("Material_cost_List_data").value = JSON.stringify(Material_cost_budget_info);          
           all_Material_cost_budget = 0;
           for (var key in Material_cost_budget_info) {
-              all_Material_cost_budget = all_Material_cost_budget+ Material_cost_budget_info[key] 
-            }
+            all_Material_cost_budget = all_Material_cost_budget+ (Material_cost_budget_info[key][0] *Material_cost_budget_info[key][1] )
+            } 
+                      
           Total_budget = all_person_budget + all_Compensation_budget +all_Genaral_cost_budget + all_Material_cost_budget + all_Public_cost_budget + all_durable_articles_budget + all_Building_budget;
-          document.getElementById("total_budget").value = (Total_budget*1).toLocaleString('en');
+         // alert(all_person_budget+"-"+Total_budget) 
+          total_budget_cal.value = (Total_budget*1).toLocaleString('en');
           div.parentElement.remove();
-          */
 } 
 
 //------------------------------------------------------------------------------------    10.2.4      -------------
@@ -305,6 +325,7 @@ function add_Public_cost_budget(){
   document.getElementById("total_budget").value = (Total_budget*1).toLocaleString('en');
   
   li.appendChild(t);
+  all_Public_cost_budget = all_Public_cost_budget + ((Public_cost_value*1)*(Public_cost_name_qt*1))
   
   if (Public_cost_value === '') {
       alert("กรุณาใส่รายละเอียด !");
@@ -324,24 +345,27 @@ function add_Public_cost_budget(){
   document.getElementById("Public_cost_List_data").value = JSON.stringify(Public_cost_budget_info);
   for (i = 0; i < close.length; i++) {
     close[i].onclick = function() {
-        addBudget_4(this)                 
+        addBudget_5(this)                 
       }
   }  
 }
 
-function addBudget_4(div){
-        alert("อยู่่ในระหว่างการปรับปรุง")
-        /*
-          var ids = div.id
-          Public_cost_budget_info[ids] = 0;           
-          all_Public_cost_budget = 0;
-          for (var key in Public_cost_budget_info) {
-              all_Public_cost_budget = all_Public_cost_budget+ Public_cost_budget_info[key] 
-            }
-          Total_budget = all_person_budget + all_Compensation_budget +all_Genaral_cost_budget + all_Material_cost_budget + all_Public_cost_budget + all_durable_articles_budget + all_Building_budget;
-          document.getElementById("total_budget").value = (Total_budget*1).toLocaleString('en');
-          div.parentElement.remove();
-          */
+function addBudget_5(div){
+        //alert("อยู่่ในระหว่างการปรับปรุง")
+        var ids = div.id   
+        // alert(ids) 
+         delete Public_cost_budget_info[ids]
+        // alert(JSON.stringify(Genaral_cost_budget_info))   
+         document.getElementById("Public_cost_List_data").value = JSON.stringify(Public_cost_budget_info);          
+         all_Public_cost_budget = 0;
+         for (var key in Public_cost_budget_info) {
+          all_Public_cost_budget = all_Public_cost_budget+ (Public_cost_budget_info[key][0] *Public_cost_budget_info[key][1] )
+           } 
+                     
+         Total_budget = all_person_budget + all_Compensation_budget +all_Genaral_cost_budget + all_Material_cost_budget + all_Public_cost_budget + all_durable_articles_budget + all_Building_budget;
+        // alert(all_person_budget+"-"+Total_budget) 
+         total_budget_cal.value = (Total_budget*1).toLocaleString('en');
+         div.parentElement.remove();
 } 
 
 //------------------------------------------------------------------------------------    10.2.4      -------------
@@ -362,6 +386,7 @@ function add_durable_articles_budget(){
   document.getElementById("total_budget").value = (Total_budget*1).toLocaleString('en');
   
   li.appendChild(t);
+  all_durable_articles_budget = all_durable_articles_budget + ((durable_articles_value*1)*(durable_articles_name_qt*1))
   
   if (durable_articles_value === '') {
       alert("กรุณาใส่รายละเอียด !");
@@ -382,24 +407,27 @@ function add_durable_articles_budget(){
   document.getElementById("durable_articles_List_data").value = JSON.stringify(durable_articles_budget_info);
   for (i = 0; i < close.length; i++) {
     close[i].onclick = function() {
-        addBudget_4(this)                 
+        addBudget_6(this)                 
       }
   }  
 }
 
-function addBudget_4(div){
-        alert("อยู่่ในระหว่างการปรับปรุง")
-        /*
-          var ids = div.id
-          durable_articles_budget_info[ids] = 0;           
-          all_durable_articles_budget = 0;
-          for (var key in durable_articles_budget_info) {
-              all_durable_articles_budget = all_durable_articles_budget+ durable_articles_budget_info[key] 
-            }
-          Total_budget = all_person_budget + all_Compensation_budget +all_Genaral_cost_budget + all_Material_cost_budget + all_Public_cost_budget + all_durable_articles_budget + all_Building_budget;
-          document.getElementById("total_budget").value = (Total_budget*1).toLocaleString('en');
-          div.parentElement.remove();
-          */
+function addBudget_6(div){
+        //alert("อยู่่ในระหว่างการปรับปรุง")
+        var ids = div.id   
+        // alert(ids) 
+         delete durable_articles_budget_info[ids]
+        // alert(JSON.stringify(Genaral_cost_budget_info))   
+         document.getElementById("durable_articles_List_data").value = JSON.stringify(durable_articles_budget_info);          
+         all_durable_articles_budget = 0;
+         for (var key in durable_articles_budget_info) {
+          all_durable_articles_budget = all_durable_articles_budget+ (durable_articles_budget_info[key][0] *durable_articles_budget_info[key][1] )
+           } 
+                     
+         Total_budget = all_person_budget + all_Compensation_budget +all_Genaral_cost_budget + all_Material_cost_budget + all_Public_cost_budget + all_durable_articles_budget + all_Building_budget;
+        // alert(all_person_budget+"-"+Total_budget) 
+         total_budget_cal.value = (Total_budget*1).toLocaleString('en');
+         div.parentElement.remove();
 } 
 
 //------------------------------------------------------------------------------------    10.2.4      -------------
@@ -420,6 +448,7 @@ function add_Building_budget(){
   document.getElementById("total_budget").value = (Total_budget*1).toLocaleString('en');
   
   li.appendChild(t);
+  all_Building_budget = all_Building_budget + ((Building_value*1)*(Building_name_qt*1))
   
   if (Building_value === '') {
       alert("กรุณาใส่รายละเอียด !");
@@ -440,22 +469,25 @@ function add_Building_budget(){
   document.getElementById("Building_List_data").value = JSON.stringify(Building_budget_info);
   for (i = 0; i < close.length; i++) {
     close[i].onclick = function() {
-        addBudget_4(this)                 
+        addBudget_7(this)                 
       }
   }  
 }
 
-function addBudget_4(div){
-        alert("อยู่่ในระหว่างการปรับปรุง")
-        /*
-          var ids = div.id
-          Building_budget_info[ids] = 0;           
-          all_Building_budget = 0;
-          for (var key in Building_budget_info) {
-              all_Building_budget = all_Building_budget+ Building_budget_info[key] 
-            }
-          Total_budget = all_person_budget + all_Compensation_budget +all_Genaral_cost_budget + all_Material_cost_budget + all_Public_cost_budget + all_durable_articles_budget + all_Building_budget;
-          document.getElementById("total_budget").value = (Total_budget*1).toLocaleString('en');
-          div.parentElement.remove();
-          */
+function addBudget_7(div){
+        //alert("อยู่่ในระหว่างการปรับปรุง")
+        var ids = div.id   
+        // alert(ids) 
+         delete Building_budget_info[ids]
+        // alert(JSON.stringify(Genaral_cost_budget_info))   
+         document.getElementById("Building_List_data").value = JSON.stringify(Building_budget_info);          
+         all_Building_budget = 0;
+         for (var key in Building_budget_info) {
+          all_Building_budget = all_Building_budget+ (Building_budget_info[key][0] *Building_budget_info[key][1] )
+           } 
+                     
+         Total_budget = all_person_budget + all_Compensation_budget +all_Genaral_cost_budget + all_Material_cost_budget + all_Public_cost_budget + all_durable_articles_budget + all_Building_budget;
+        // alert(all_person_budget+"-"+Total_budget) 
+         total_budget_cal.value = (Total_budget*1).toLocaleString('en');
+         div.parentElement.remove();
 } 

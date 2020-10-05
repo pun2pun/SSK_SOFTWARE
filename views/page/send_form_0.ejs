@@ -64,22 +64,22 @@
           </div>
           <select class="custom-select" id="departmentSelect" name="departmentSelect">
             <option selected > ----- กรุณาเลือก ----</option>
-            <option value="กลุ่มบริหารงานวิชาการ" style="color: deeppink;" disabled>------- กลุ่มบริหารงานวิชาการ ------- </option>
+            <option value="กลุ่มบริหารงานวิชาการ" style="color: deeppink;" >------- กลุ่มบริหารงานวิชาการ ------- </option>
             <% for(var index = 0; index < departmentData[0].sub.length;index++){%>                             
                 <option value="<%= departmentData[0].sub[index] %>" ><%= " - "+departmentData[0].sub[index] %> </option>                
             <% } %> 
             
-            <option value="กลุ่มบริหารงานงบประมาณและแผนงาน" style="color: deeppink;" disabled>------- กลุ่มบริหารงานงบประมาณและแผนงาน -------</option>
+            <option value="กลุ่มบริหารงานงบประมาณและแผนงาน" style="color: deeppink;" >------- กลุ่มบริหารงานงบประมาณและแผนงาน -------</option>
             <% for(var index2 = 0; index2 < departmentData[1].sub.length;index2++){%>                             
                 <option value="<%= departmentData[1].sub[index2] %>" ><%= " - "+departmentData[1].sub[index2] %> </option>                
             <% } %> 
 
-            <option value="กลุ่มบริหารงานบุคคล" style="color: deeppink;" disabled>------- กลุ่มบริหารงานบุคคล -------</option>
+            <option value="กลุ่มบริหารงานบุคคล" style="color: deeppink;" >------- กลุ่มบริหารงานบุคคล -------</option>
             <% for(var index3 = 0; index3 < departmentData[2].sub.length;index3++){%>                             
                 <option value="<%= departmentData[2].sub[index3] %>" ><%= " - "+departmentData[2].sub[index3] %> </option>                
             <% } %> 
 
-            <option value="กลุ่มบริหารงานทั่วไป" style="color: deeppink;" disabled>------- กลุ่มบริหารงานทั่วไป -------</option>
+            <option value="กลุ่มบริหารงานทั่วไป" style="color: deeppink;" >------- กลุ่มบริหารงานทั่วไป -------</option>
             <% for(var index4 = 0; index4 < departmentData[3].sub.length;index4++){%>                             
                 <option value="<%= departmentData[3].sub[index4] %>" ><%= " - "+departmentData[3].sub[index4] %> </option>                
             <% } %> 
